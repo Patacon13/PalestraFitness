@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#201F1D"
+    android:theme="@style/MyTheme"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/botonAceptar"
+        android:layout_width="336dp"
+        android:layout_height="155dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="44dp"
+        android:onClick="aceptarIngreso"
+        android:text="Aceptar"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNumberSigned"
+        android:layout_width="380dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="748dp"
+        android:layout_marginEnd="96dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="186dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="186dp"
+        android:layout_marginBottom="318dp"
+        android:backgroundTint="@color/white"
+        android:text="DNI"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberSigned"
+        app:layout_constraintVertical_bias="0.014" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="384dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="956dp"
+        android:layout_marginEnd="101dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="144dp"
+        android:backgroundTint="@color/white"
+        android:text="Contraseña"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="653dp"
+        android:layout_height="634dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="410dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048"
+        app:srcCompat="@drawable/logo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
