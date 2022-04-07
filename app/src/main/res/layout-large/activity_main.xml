@@ -8,27 +8,10 @@
     android:theme="@style/MyTheme"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/botonAceptar"
-        android:layout_width="336dp"
-        android:layout_height="155dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginEnd="165dp"
-        android:layout_marginBottom="44dp"
-        android:onClick="aceptarIngreso"
-        android:text="Aceptar"
-        app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/editTextNumberSigned"
         android:layout_width="380dp"
         android:layout_height="69dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="748dp"
-        android:layout_marginEnd="96dp"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="numberSigned"
@@ -36,74 +19,71 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/botonAceptar"
+        android:layout_width="216dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="28dp"
+        android:onClick="aceptarIngreso"
+        android:text="Aceptar"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="186dp"
+        android:layout_width="89dp"
+        android:layout_height="61dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="186dp"
-        android:layout_marginBottom="318dp"
         android:backgroundTint="@color/white"
         android:text="DNI"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberSigned"
-        app:layout_constraintVertical_bias="0.014" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned"
+        app:layout_constraintStart_toStartOf="@+id/editTextNumberSigned"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberSigned" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="384dp"
         android:layout_height="70dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="956dp"
-        android:layout_marginEnd="101dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textPassword"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned"
+        app:layout_constraintStart_toStartOf="@+id/editTextNumberSigned"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="144dp"
         android:backgroundTint="@color/white"
         android:text="Contraseña"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="653dp"
-        android:layout_height="634dp"
-        android:layout_marginStart="34dp"
+        android:layout_width="308dp"
+        android:layout_height="274dp"
+        android:layout_marginStart="86dp"
         android:layout_marginTop="43dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="410dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="483dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
         app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
