@@ -25,11 +25,19 @@ public class PlaceholderFragment extends Fragment {
     private PageViewModel pageViewModel;
     private FragmentAdministrationBinding binding;
 
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, index);
-        fragment.setArguments(bundle);
+    public static Fragment newInstance(int index) {
+
+        Fragment fragment = null;
+
+        switch(index) {
+            case 1:
+                fragment = new Agregar();
+                break;
+            case 2:
+                fragment = new Agregar();
+                break;
+        }
+
         return fragment;
     }
 
