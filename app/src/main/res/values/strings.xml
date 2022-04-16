@@ -1,4 +1,11 @@
 <resources>
+
+    <string-array name="items">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+
+
     <string name="app_name">Palestra Fitness</string>
     <string name="title_activity_administration">AdministrationActivity</string>
     <string name="tab_text_1">Tab 1</string>

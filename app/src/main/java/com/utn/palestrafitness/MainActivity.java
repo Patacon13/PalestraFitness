@@ -1,4 +1,4 @@
-package com.example.palestrafitness;
+package com.utn.palestrafitness;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void aceptarIngreso(View view) {
         System.out.println("presionado!");
+    }
+
+    public void siAprieta(View view) {
+        return;
     }
 
     @Override

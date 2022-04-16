@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "166604768552",
+    "project_id": "palestra-fitness",
+    "storage_bucket": "palestra-fitness.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166604768552:android:f7d311b28f1bf2aea9fc1d",
+        "android_client_info": {
+          "package_name": "com.utn.palestrafitness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166604768552-a6fdvkg0prmnm54k0jpqgh1uhm5jnfuj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwy45BJjU5-hlnRFcyDCwjmCBYm4jXfAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166604768552-a6fdvkg0prmnm54k0jpqgh1uhm5jnfuj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

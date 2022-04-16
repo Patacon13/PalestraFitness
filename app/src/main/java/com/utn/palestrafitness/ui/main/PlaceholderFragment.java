@@ -1,4 +1,4 @@
-package com.example.palestrafitness.ui.main;
+package com.utn.palestrafitness.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.palestrafitness.R;
-import com.example.palestrafitness.databinding.FragmentAdministrationBinding;
+import com.utn.palestrafitness.R;
+import com.utn.palestrafitness.databinding.FragmentAdministrationBinding;
 
 /**
  * A placeholder fragment containing a simple view.

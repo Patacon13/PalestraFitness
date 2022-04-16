@@ -1,4 +1,4 @@
-package com.example.palestrafitness;
+package com.utn.palestrafitness;
 
 import android.os.Bundle;
 
@@ -13,8 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.palestrafitness.ui.main.SectionsPagerAdapter;
-import com.example.palestrafitness.databinding.ActivityAdministrationBinding;
+import com.utn.palestrafitness.ui.main.SectionsPagerAdapter;
+import com.utn.palestrafitness.databinding.ActivityAdministrationBinding;
 
 public class AdministrationActivity extends AppCompatActivity {
 

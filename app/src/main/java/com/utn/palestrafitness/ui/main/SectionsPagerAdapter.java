@@ -1,4 +1,4 @@
-package com.example.palestrafitness.ui.main;
+package com.utn.palestrafitness.ui.main;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.palestrafitness.R;
+import com.utn.palestrafitness.R;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

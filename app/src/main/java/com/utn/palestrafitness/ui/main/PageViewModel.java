@@ -1,4 +1,4 @@
-package com.example.palestrafitness.ui.main;
+package com.utn.palestrafitness.ui.main;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
