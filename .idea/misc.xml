@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/usuario/Desktop/Palestra/PalestraFitness/app/src/main/res/layout-xlarge/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/usuario/Desktop/Palestra/PalestraFitness/app/src/main/res/layout/fragment_administration.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/usuario/Desktop/Palestra/PalestraFitness/app/src/main/res/layout/fragment_editar.xml" value="0.25" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout-large/activity_main.xml" value="0.67" />
         <entry key="app/src/main/res/layout-normal/activity_main.xml" value="0.17552083333333332" />
@@ -10,7 +13,6 @@
         <entry key="app/src/main/res/layout/activity_administration.xml" value="0.2604166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_administration.xml" value="0.2554347826086957" />
-        <entry key="app/src/main/res/layout/fragment_agregar.xml" value="0.5" />
       </map>
     </option>
   </component>
