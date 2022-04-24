@@ -9,11 +9,12 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editTextNumberSigned"
+        android:id="@+id/textoDocumento"
         android:layout_width="380dp"
         android:layout_height="69dp"
         android:backgroundTint="@color/white"
         android:ems="10"
+        android:hint="Documento"
         android:inputType="numberSigned"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -34,43 +35,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="89dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/white"
-        android:text="DNI"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberSigned"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberSigned" />
-
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/textoContrasena"
         android:layout_width="384dp"
         android:layout_height="70dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="79dp"
         android:backgroundTint="@color/white"
         android:ems="10"
+        android:hint="Contraseña"
+        android:textColorHint="#FFFFFF"
         android:inputType="textPassword"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberSigned"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:text="Contraseña"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/textoDocumento"
+        app:layout_constraintStart_toStartOf="@+id/textoDocumento"
+        app:layout_constraintTop_toBottomOf="@+id/textoDocumento" />
 
     <ImageView
         android:id="@+id/imageView"

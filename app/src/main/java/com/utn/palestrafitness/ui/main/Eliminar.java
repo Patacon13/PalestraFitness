@@ -269,7 +269,7 @@ public class Eliminar extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                Alumno datosAlumno = (Alumno) snapshot.getValue(Alumno.class);
+                Alumno datosAlumno = snapshot.getValue(Alumno.class);
 
 
                 if (datosAlumno.getEsAlumnoActivo()) tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);

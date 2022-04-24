@@ -21,13 +21,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned"
+        android:id="@+id/textoDocumento"
         android:layout_width="469dp"
         android:layout_height="91dp"
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="numberSigned"
+        android:hint="Documento"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -36,47 +37,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="146dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="18dp"
-        android:backgroundTint="@color/white"
-        android:text="DNI"
-        android:textColor="#FFFFFF"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberSigned"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberSigned" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:backgroundTint="@color/white"
-        android:text="Contraseña"
-        android:textColor="#FFFFFF"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
-
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/textoContrasena"
         android:layout_width="466dp"
         android:layout_height="74dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="156dp"
         android:backgroundTint="@color/white"
+        android:textColorHint="#FFFFFF"
         android:ems="10"
+        android:hint="Contraseña"
         android:inputType="textPassword"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned"
+        app:layout_constraintEnd_toEndOf="@+id/textoDocumento"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberSigned"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/textoDocumento"
+        app:layout_constraintTop_toBottomOf="@+id/textoDocumento" />
 
     <ImageView
         android:id="@+id/imageView"
