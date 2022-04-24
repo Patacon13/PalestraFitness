@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_administration.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_agregar.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_eliminar.xml" value="0.2484076433121019" />
       </map>
     </option>
   </component>

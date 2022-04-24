@@ -31,10 +31,12 @@ public class PlaceholderFragment extends Fragment {
 
         switch(index) {
             case 1:
+                System.out.println("1");
                 fragment = new Agregar();
                 break;
             case 2:
-                fragment = new Agregar();
+                System.out.println("2");
+                fragment = new Eliminar();
                 break;
         }
 
