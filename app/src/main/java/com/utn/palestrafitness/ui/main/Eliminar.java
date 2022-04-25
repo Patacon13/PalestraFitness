@@ -95,6 +95,7 @@ public class Eliminar extends Fragment {
                         apellido.setTextSize(21);
                         TextView documento = new TextView(thisView.getContext());
                         documento.setTextSize(21);
+                        TextView estado = new TextView(thisView.getContext());
 
                         fila.setClickable(true);
                         for (int i = 0; i < tablaEliminar.getChildCount(); i++) {
@@ -110,13 +111,14 @@ public class Eliminar extends Fragment {
                         nombre.setText((String) esteAlumno.get("usuario"));
                         apellido.setText((String) esteAlumno.get("apellido"));
                         documento.setText((String) esteAlumno.get("documento"));
+                        estado.setBackgroundColor((Boolean) (esteAlumno.get("esAlumnoActivo")) ? Color.GREEN : Color.RED);
 
                         fila.addView(nombre);
                         fila.addView(apellido);
                         fila.addView(documento);
+                        fila.addView(estado);
                         if (documento.getText().toString() != "") tablaEliminar.addView(fila);
-                    }
-                    else System.out.println("no"); //todo: implementar
+                    } else System.out.println("no"); //todo: implementar
                 }
 
                 @Override
@@ -126,136 +128,72 @@ public class Eliminar extends Fragment {
             });
         }
 
-        // Si no se encontró por clave, se busca por valor
-        Query consultaPorNombre = rootRef.getReference().child("Usuario/Alumno/").orderByChild("usuario").startAt(this.usuario).endAt(this.usuario);
+        Query consultaPorNombre = rootRef.getReference().child("Usuario/Alumno/");
 
-        if (!usuario.isEmpty() && dni.isEmpty()) consultaPorNombre.addValueEventListener(new ValueEventListener() {
-            String textoApellido = apellido;
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
+        if (dni.isEmpty()) {
+            consultaPorNombre.addValueEventListener(new ValueEventListener() {
+                String textoApellido = apellido;
+                String textoNombre = usuario;
 
-
-                    System.out.println("Entrando2");
-
-                    HashMap encontrados = ((HashMap) snapshot.getValue());
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
 
 
-                    encontrados.forEach((documentoClave, esteAlumno) -> {
-                        System.out.println(documentoClave);
+                        System.out.println("Entrando2");
 
-                        TableRow fila = new TableRow(thisView.getContext());
-                        TextView nombre = new TextView(thisView.getContext());
-                        nombre.setTextSize(21);
-                        TextView apellido = new TextView(thisView.getContext());
-                        apellido.setTextSize(21);
-                        TextView documento = new TextView(thisView.getContext());
-                        documento.setTextSize(21);
+                        HashMap encontrados = ((HashMap) snapshot.getValue());
+                        System.out.println(encontrados);
+                        encontrados.forEach((documentoClave, esteAlumno) -> {
+                            System.out.println(documentoClave);
 
-                        fila.setClickable(true);
-                        fila.setOnClickListener(v -> {
-                            for (int i = 0; i < tablaEliminar.getChildCount(); i++) {
-                                tablaEliminar.getChildAt(i).setBackgroundColor(Color.WHITE);
+                            TableRow fila = new TableRow(thisView.getContext());
+                            TextView nombre = new TextView(thisView.getContext());
+                            nombre.setTextSize(21);
+                            TextView apellido = new TextView(thisView.getContext());
+                            apellido.setTextSize(21);
+                            TextView documento = new TextView(thisView.getContext());
+                            documento.setTextSize(21);
+                            TextView estado = new TextView(thisView.getContext());
+
+                            fila.setClickable(true);
+                            fila.setOnClickListener(v -> {
+                                for (int i = 0; i < tablaEliminar.getChildCount(); i++) {
+                                    tablaEliminar.getChildAt(i).setBackgroundColor(Color.WHITE);
+                                }
+                                fila.setBackgroundColor(Color.GRAY);
+                                seleccionado = fila;
+                            });
+
+                            HashMap alumno = (HashMap) esteAlumno;
+
+                            //System.out.println(alumno);
+                            //System.out.println(((String) alumno.get(apellido)));");
+
+                            if ((textoApellido.equals("") && textoNombre.equals(alumno.get("usuario"))) || (textoNombre.equals("") && alumno.get("apellido").equals(this.textoApellido)) || (textoNombre.equals(alumno.get("usuario")) && textoApellido.equals(alumno.get("apellido")))) {
+                                nombre.setText((String) alumno.get("usuario"));
+                                apellido.setText((String) alumno.get("apellido"));
+                                documento.setText((String) alumno.get("documento"));
+                                estado.setBackgroundColor((Boolean) (alumno.get("esAlumnoActivo")) ? Color.GREEN : Color.RED);
+
+                                fila.addView(nombre);
+                                fila.addView(apellido);
+                                fila.addView(documento);
+                                fila.addView(estado);
+                                System.out.println("Agrego " + nombre.getText().toString());
+                                tablaEliminar.addView(fila);
                             }
-                            fila.setBackgroundColor(Color.GRAY);
-                            seleccionado = fila;
                         });
-
-                        HashMap alumno = (HashMap) esteAlumno;
-
-                        //System.out.println(alumno);
-                        //System.out.println(((String) alumno.get(apellido)));
-
-                        System.out.println(textoApellido + " Aaaa ");
-
-                        if (textoApellido.equals("") || ((String) alumno.get("apellido")).equals(this.textoApellido)) {
-                            nombre.setText((String) alumno.get("usuario"));
-                            apellido.setText((String) alumno.get("apellido"));
-                            documento.setText((String) alumno.get("documento"));
-
-                            fila.addView(nombre);
-                            fila.addView(apellido);
-                            fila.addView(documento);
-                            System.out.println("Agrego " + nombre.getText().toString());
-                            tablaEliminar.addView(fila);
-                        }
-                    });
+                    } else System.out.println("no"); //todo: implementar
                 }
-                else System.out.println("no"); //todo: implementar
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-        Query consultaPorApellido = rootRef.getReference().child("Usuario/Alumno/").orderByChild("apellido").startAt(this.apellido).endAt(this.apellido);
-
-        System.out.println("gkoepwkgpoerokgoerpg" + usuario);
-
-        if (dni.isEmpty() && usuario.isEmpty()) consultaPorApellido.addValueEventListener(new ValueEventListener() {
-            String textoNombre = usuario;
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-
-                    System.out.println("Entrando");
-
-                    HashMap encontrados = ((HashMap) snapshot.getValue());
-
-
-                    encontrados.forEach((documentoClave, esteAlumno) -> {
-                        System.out.println(documentoClave);
-
-                        TableRow fila = new TableRow(thisView.getContext());
-                        TextView nombre = new TextView(thisView.getContext());
-                        nombre.setTextSize(21);
-                        TextView apellido = new TextView(thisView.getContext());
-                        apellido.setTextSize(21);
-                        TextView documento = new TextView(thisView.getContext());
-                        documento.setTextSize(21);
-
-                        fila.setClickable(true);
-                        fila.setOnClickListener(v -> {
-                            for (int i = 0; i < tablaEliminar.getChildCount(); i++) {
-                                tablaEliminar.getChildAt(i).setBackgroundColor(Color.WHITE);
-                            }
-                            fila.setBackgroundColor(Color.GRAY);
-                            seleccionado = fila;
-                        });
-
-                        HashMap alumno = (HashMap) esteAlumno;
-
-                        //System.out.println(alumno);
-                        //System.out.println(((String) alumno.get(apellido)));
-
-                        System.out.println(textoNombre + " Aaaa ");
-
-                        if (textoNombre.equals("") || ((String) alumno.get("nombre")).equals(this.textoNombre)) {
-                            nombre.setText((String) alumno.get("usuario"));
-                            apellido.setText((String) alumno.get("apellido"));
-                            documento.setText((String) alumno.get("documento"));
-
-                            fila.addView(nombre);
-                            fila.addView(apellido);
-                            fila.addView(documento);
-                            System.out.println("Agrego " + nombre.getText().toString());
-                            tablaEliminar.addView(fila);
-                        }
-                    });
                 }
-                else System.out.println("no"); //todo: implementar
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+            });
+        }
     }
 
     public void suspenderAlumno() {
@@ -265,17 +203,18 @@ public class Eliminar extends Fragment {
 
         Query consultaPorAlumno = rootRef.getReference().child("Usuario/Alumno/" + ((TextView) seleccionado.getChildAt(2)).getText().toString() + "/");
 
-        consultaPorAlumno.addValueEventListener(new ValueEventListener() {
+        consultaPorAlumno.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 Alumno datosAlumno = snapshot.getValue(Alumno.class);
 
 
-                if (datosAlumno.getEsAlumnoActivo()) tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);
-                datosAlumno.setEsAlumnoActivo(false);
+                datosAlumno.setEsAlumnoActivo(!datosAlumno.getEsAlumnoActivo());
 
                 snapshot.getRef().setValue(datosAlumno);
+
+                tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);
 
             }
 

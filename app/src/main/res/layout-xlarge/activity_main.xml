@@ -8,12 +8,23 @@
     android:theme="@style/MyTheme"
     tools:context=".MainActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/errorUsuario"
+        android:name="com.utn.palestrafitness.ErrorUsuario"
+        android:layout_width="963dp"
+        android:layout_height="506dp"
+        android:layout_marginTop="9dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <Button
         android:id="@+id/botonAceptar"
         android:layout_width="252dp"
         android:layout_height="84dp"
         android:layout_marginBottom="176dp"
-        android:onClick="aceptarIngreso"
+        android:onClick="aceptaIngreso"
         android:text="Aceptar"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,8 +38,8 @@
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/white"
         android:ems="10"
-        android:inputType="numberSigned"
         android:hint="Documento"
+        android:inputType="numberSigned"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -44,11 +55,12 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="156dp"
         android:backgroundTint="@color/white"
-        android:textColorHint="#FFFFFF"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/textoDocumento"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textoDocumento"
@@ -69,5 +81,47 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.107"
         app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Datos"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layoutError"
+        android:layout_width="754dp"
+        android:layout_height="345dp"
+        android:layout_marginTop="80dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="El usuario o contraseña es incorrecto"
+            android:textColor="#000000"
+            android:textSize="60sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="231dp"
+            android:layout_height="72dp"
+            android:gravity="center"
+            android:onClick="cierraMensaje"
+            android:text="Aceptar" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

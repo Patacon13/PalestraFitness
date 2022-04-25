@@ -8,8 +8,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout2"
-        android:layout_width="386dp"
-        android:layout_height="309dp"
+        android:layout_width="509dp"
+        android:layout_height="276dp"
         android:layout_marginStart="13dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="12dp"
@@ -25,7 +25,7 @@
 
             <EditText
                 android:id="@+id/nombreBaja"
-                android:layout_width="181dp"
+                android:layout_width="228dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Nombre"
@@ -33,7 +33,7 @@
 
             <EditText
                 android:id="@+id/apellidoBaja"
-                android:layout_width="192dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:hint="Apellido"
@@ -73,8 +73,8 @@
 
     <TableLayout
         android:id="@+id/tablaEliminar"
-        android:layout_width="384dp"
-        android:layout_height="215dp"
+        android:layout_width="505dp"
+        android:layout_height="182dp"
         app:layout_constraintBottom_toBottomOf="@+id/tableLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -103,6 +103,13 @@
                 android:layout_height="wrap_content"
                 android:text="DNI"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:text="Estado"
+                android:textSize="20sp" />
         </TableRow>
 
     </TableLayout>
@@ -114,7 +121,7 @@
         android:layout_marginStart="144dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="145dp"
-        android:text="Suspender"
+        android:text="Suspender/Reactivar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />

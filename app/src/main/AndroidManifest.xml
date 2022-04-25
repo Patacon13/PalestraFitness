@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PalestraFitness">
         <activity
+            android:name=".Rutina"
+            android:exported="false" />
+        <activity
             android:name=".AdministrationActivity"
             android:exported="false"
             android:label="@string/title_activity_administration"
