@@ -10,6 +10,7 @@
     <string name="title_activity_administration">AdministrationActivity</string>
     <string name="tab_text_1">Agregar usuario</string>
     <string name="tab_text_2">Dar baja/Reactivar</string>
+    <string name="tab_text_3">Editar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Datos">Desarrollado por \nIrina Argañaras \nTomás Assenza</string>

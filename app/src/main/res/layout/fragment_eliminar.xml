@@ -8,8 +8,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout2"
-        android:layout_width="509dp"
-        android:layout_height="276dp"
+        android:layout_width="449dp"
+        android:layout_height="275dp"
         android:layout_marginStart="13dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="12dp"
@@ -73,8 +73,8 @@
 
     <TableLayout
         android:id="@+id/tablaEliminar"
-        android:layout_width="505dp"
-        android:layout_height="182dp"
+        android:layout_width="444dp"
+        android:layout_height="176dp"
         app:layout_constraintBottom_toBottomOf="@+id/tableLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -85,7 +85,7 @@
 
             <TextView
                 android:id="@+id/textView17"
-                android:layout_width="129dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:text="Nombre"
                 android:textSize="20sp" />
@@ -106,7 +106,7 @@
 
             <TextView
                 android:id="@+id/textView26"
-                android:layout_width="116dp"
+                android:layout_width="76dp"
                 android:layout_height="wrap_content"
                 android:text="Estado"
                 android:textSize="20sp" />

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.utn.palestrafitness.Editar;
 import com.utn.palestrafitness.R;
 import com.utn.palestrafitness.databinding.FragmentAdministrationBinding;
 
@@ -37,6 +38,9 @@ public class PlaceholderFragment extends Fragment {
             case 2:
                 System.out.println("2");
                 fragment = new Eliminar();
+                break;
+            case 3:
+                fragment = new Editar();
                 break;
         }
 
