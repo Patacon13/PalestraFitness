@@ -123,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = new Intent(this, Rutina.class);
+        startActivity(intent);
 
         textoDocumento = findViewById(R.id.textoDocumento);
         textoContrasena = findViewById(R.id.textoContrasena);

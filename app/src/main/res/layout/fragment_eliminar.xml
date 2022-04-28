@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.Eliminar">
+    android:orientation="vertical"
+    tools:context=".ui.main.Eliminar"
+    >
+
 
     <TableLayout
+        android:gravity="center"
         android:id="@+id/tableLayout2"
-        android:layout_width="449dp"
-        android:layout_height="275dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="393dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="393dp">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <EditText
                 android:id="@+id/nombreBaja"
-                android:layout_width="228dp"
+                android:layout_width="156dp"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
                 android:ems="10"
                 android:hint="Nombre"
                 android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/apellidoBaja"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
                 android:ems="10"
                 android:hint="Apellido"
                 android:inputType="textPersonName" />
@@ -42,6 +41,7 @@
         </TableRow>
 
         <TableRow
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -49,14 +49,16 @@
                 android:id="@+id/textoDNI"
                 android:layout_width="167dp"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
                 android:ems="10"
                 android:hint="DNI"
                 android:inputType="numberSigned" />
 
             <Button
                 android:id="@+id/botonBuscar"
-                android:layout_width="162dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="1"
                 android:text="Buscar" />
         </TableRow>
 
@@ -64,52 +66,56 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </TableRow>
+            <TableLayout
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+                android:id="@+id/tablaEliminar"
+                android:layout_width="wrap_content"
+                android:layout_height="175dp"
+                android:layout_span="2"
+                android:layout_weight="2">
 
-    <TableLayout
-        android:id="@+id/tablaEliminar"
-        android:layout_width="444dp"
-        android:layout_height="176dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tableLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                    <TextView
 
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:text="Nombre"
-                android:textSize="20sp" />
+                        android:id="@+id/textView17"
+                        android:layout_width="97dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Nombre"
+                        android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="127dp"
-                android:layout_height="wrap_content"
-                android:text="Apellido"
-                android:textSize="20sp" />
+                    <TextView
 
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content"
-                android:text="DNI"
-                android:textSize="20sp" />
+                        android:id="@+id/textView18"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Apellido"
+                        android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/textView26"
-                android:layout_width="76dp"
-                android:layout_height="wrap_content"
-                android:text="Estado"
-                android:textSize="20sp" />
+                    <TextView
+
+                        android:id="@+id/textView19"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="DNI"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estado"
+                        android:textSize="20sp" />
+                </TableRow>
+
+            </TableLayout>
         </TableRow>
 
     </TableLayout>
@@ -121,9 +127,6 @@
         android:layout_marginStart="144dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="145dp"
-        android:text="Suspender/Reactivar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+        android:text="Suspender/Reactivar" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
