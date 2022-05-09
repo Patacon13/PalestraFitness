@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.Gravity;
 import android.widget.EditText;
@@ -23,7 +24,6 @@ public class Rutina extends AppCompatActivity {
         setContentView(R.layout.activity_rutina);
 
         tabla = findViewById(R.id.tablaEjercicios);
-
         for (int i = 0; i < 4; i++) {
             //Agrego la semana
             TextView semana = new TextView(this);
@@ -58,13 +58,11 @@ public class Rutina extends AppCompatActivity {
 
             for (int j = 0; j < 5; j++) {
                 TableRow filaEjercicio = new TableRow(this);
-                filaEjercicio.setBackgroundResource(R.drawable.border);
                 for (int k = 0; k < 6; k++) {
                     EditText textoEditable = new EditText(this);
+                    textoEditable.setTextColor(Color.BLACK);
+                    if (k % 2 != 0) textoEditable.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
                     textoEditable.setBackgroundResource(R.drawable.border);
-                    /*if (k % 2 == 0) textoEditable.setWidth(50);
-                    else textoEditable.setWidth(30);
-                    */
                     filaEjercicio.addView(textoEditable);
                 }
                 tabla.addView(filaEjercicio);

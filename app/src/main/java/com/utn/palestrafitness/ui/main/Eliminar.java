@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ public class Eliminar extends Fragment {
     private TextView textoApellido;
 
     private Button button;
-
+    private int defaultColor;
     private TableLayout tablaClientes;
 
     public Eliminar() {
@@ -99,7 +100,7 @@ public class Eliminar extends Fragment {
 
                         fila.setClickable(true);
                         for (int i = 0; i < tablaEliminar.getChildCount(); i++) {
-                            tablaEliminar.getChildAt(i).setBackgroundColor(Color.WHITE);
+                            tablaEliminar.getChildAt(i).setBackgroundColor(defaultColor);
                         }
 
                         fila.setOnClickListener(v -> {
@@ -117,6 +118,7 @@ public class Eliminar extends Fragment {
                         fila.addView(apellido);
                         fila.addView(documento);
                         fila.addView(estado);
+                        fila.setGravity(Gravity.CENTER);
                         if (documento.getText().toString() != "") tablaEliminar.addView(fila);
                     } else System.out.println("no"); //todo: implementar
                 }
@@ -139,12 +141,7 @@ public class Eliminar extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-
-
-                        System.out.println("Entrando2");
-
                         HashMap encontrados = ((HashMap) snapshot.getValue());
-                        System.out.println(encontrados);
                         encontrados.forEach((documentoClave, esteAlumno) -> {
                             System.out.println(documentoClave);
 
@@ -160,7 +157,7 @@ public class Eliminar extends Fragment {
                             fila.setClickable(true);
                             fila.setOnClickListener(v -> {
                                 for (int i = 0; i < tablaEliminar.getChildCount(); i++) {
-                                    tablaEliminar.getChildAt(i).setBackgroundColor(Color.WHITE);
+                                    tablaEliminar.getChildAt(i).setBackgroundColor(defaultColor);
                                 }
                                 fila.setBackgroundColor(Color.GRAY);
                                 seleccionado = fila;
@@ -181,6 +178,7 @@ public class Eliminar extends Fragment {
                                 fila.addView(apellido);
                                 fila.addView(documento);
                                 fila.addView(estado);
+                                fila.setGravity(Gravity.CENTER );
                                 System.out.println("Agrego " + nombre.getText().toString());
                                 tablaEliminar.addView(fila);
                             }
@@ -285,6 +283,8 @@ public class Eliminar extends Fragment {
         seleccionado = null;
 
         suspenderBoton.setOnClickListener(i -> suspenderAlumno());
+
+        defaultColor = tablaEliminar.getSolidColor();
 
         return view;
     }
