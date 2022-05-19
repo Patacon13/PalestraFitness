@@ -1,4 +1,4 @@
-package com.utn.palestrafitness.ui.main;
+package com.utn.palestrafitness.ui.administration;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.utn.palestrafitness.Editar;
-import com.utn.palestrafitness.R;
 import com.utn.palestrafitness.databinding.FragmentAdministrationBinding;
 
 /**
@@ -33,14 +31,14 @@ public class PlaceholderFragment extends Fragment {
         switch(index) {
             case 1:
                 System.out.println("1");
-                fragment = new Agregar();
+                fragment = new PestañaAgregar();
                 break;
             case 2:
                 System.out.println("2");
-                fragment = new Eliminar();
+                fragment = new PestañaBajaAlta();
                 break;
             case 3:
-                fragment = new Editar();
+                fragment = new PestañaEditarRutina();
                 break;
         }
 

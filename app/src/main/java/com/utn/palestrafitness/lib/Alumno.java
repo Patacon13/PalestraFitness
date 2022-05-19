@@ -1,4 +1,4 @@
-package com.utn.palestrafitness;
+package com.utn.palestrafitness.lib;
 
 public class Alumno extends Usuario {
 

@@ -1,4 +1,4 @@
-package com.utn.palestrafitness.ui.main;
+package com.utn.palestrafitness.ui.administration;
 
 import android.content.Context;
 

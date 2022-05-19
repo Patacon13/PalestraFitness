@@ -1,4 +1,4 @@
-package com.utn.palestrafitness;
+package com.utn.palestrafitness.ui.administration;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.utn.palestrafitness.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Editar#newInstance} factory method to
+ * Use the {@link PestañaEditarRutina#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Editar extends Fragment {
+public class PestañaEditarRutina extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class Editar extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Editar() {
+    public PestañaEditarRutina() {
         // Required empty public constructor
     }
 
@@ -37,8 +39,8 @@ public class Editar extends Fragment {
      * @return A new instance of fragment Editar.
      */
     // TODO: Rename and change types and number of parameters
-    public static Editar newInstance(String param1, String param2) {
-        Editar fragment = new Editar();
+    public static PestañaEditarRutina newInstance(String param1, String param2) {
+        PestañaEditarRutina fragment = new PestañaEditarRutina();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

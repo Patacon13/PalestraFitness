@@ -1,4 +1,4 @@
-package com.utn.palestrafitness.ui.main;
+package com.utn.palestrafitness.ui.administration;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.utn.palestrafitness.Alumno;
+import com.utn.palestrafitness.lib.Alumno;
 import com.utn.palestrafitness.R;
 
 import java.util.HashMap;
@@ -30,10 +30,10 @@ import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Eliminar#newInstance} factory method to
+ * Use the {@link PestañaBajaAlta#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Eliminar extends Fragment {
+public class PestañaBajaAlta extends Fragment {
 
     TableLayout tablaEliminar;
 
@@ -63,7 +63,7 @@ public class Eliminar extends Fragment {
     private int defaultColor;
     private TableLayout tablaClientes;
 
-    public Eliminar() {
+    public PestañaBajaAlta() {
         // Required empty public constructor
     }
 
@@ -236,8 +236,8 @@ public class Eliminar extends Fragment {
      * @return A new instance of fragment Eliminar.
      */
     // TODO: Rename and change types and number of parameters
-    public static Eliminar newInstance(String param1, String param2) {
-        Eliminar fragment = new Eliminar();
+    public static PestañaBajaAlta newInstance(String param1, String param2) {
+        PestañaBajaAlta fragment = new PestañaBajaAlta();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

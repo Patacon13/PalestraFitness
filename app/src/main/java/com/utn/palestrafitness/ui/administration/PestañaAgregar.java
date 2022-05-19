@@ -1,4 +1,4 @@
-package com.utn.palestrafitness.ui.main;
+package com.utn.palestrafitness.ui.administration;
 
 import android.os.Bundle;
 
@@ -12,19 +12,15 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.utn.palestrafitness.Alumno;
-import com.utn.palestrafitness.Profesor;
+import com.utn.palestrafitness.lib.Alumno;
+import com.utn.palestrafitness.lib.Profesor;
 import com.utn.palestrafitness.R;
-import com.utn.palestrafitness.Usuario;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Agregar#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Agregar extends Fragment {
+public class PestañaAgregar extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +31,8 @@ public class Agregar extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private FirebaseAuth mAuth;
+
     private TextView textoUsuario;
     private TextView textoApellido;
     private TextView textoDocumento;
@@ -44,7 +42,7 @@ public class Agregar extends Fragment {
     private CheckBox profesor;
     private TextView textoPass;
 
-    public Agregar() {
+    public PestañaAgregar() {
         // Required empty public constructor
     }
     FirebaseDatabase rootNode;
@@ -73,27 +71,21 @@ public class Agregar extends Fragment {
             reference.child(documento).setValue(alumno);
         }
 
+        mAuth.createUserWithEmailAndPassword(email, password)
+        .addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                //mListener.onSignUpDone();
+                System.out.println("anduvo");
+            }else{
+                //Utility.showDialog(getActivity(), task);
+                System.out.println("no");
+            }
+
+        });
 
 
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Agregar.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Agregar newInstance(String param1, String param2) {
-        Agregar fragment = new Agregar();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,6 +100,15 @@ public class Agregar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        // ...
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser != null){
+            currentUser.reload();
+        }
+
 
         View view = inflater.inflate(R.layout.fragment_agregar, container, false);
 

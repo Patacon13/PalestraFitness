@@ -1,11 +1,10 @@
-package com.utn.palestrafitness;
+package com.utn.palestrafitness.ui.main;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentContainerView;
 
 import android.content.Intent;
@@ -16,13 +15,20 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.utn.palestrafitness.lib.Alumno;
+import com.utn.palestrafitness.lib.Profesor;
+import com.utn.palestrafitness.R;
+import com.utn.palestrafitness.ui.rutina.RutinaActivity;
+import com.utn.palestrafitness.ui.administration.AdministrationActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     TextView textoDocumento;
     TextView textoContrasena;
@@ -34,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     Boolean alumno = Boolean.FALSE;
 
     Boolean profesor = Boolean.FALSE;
+    private FirebaseAuth mAuth;
 
     public void cierraMensaje(View view) {
         layoutError.setVisibility(INVISIBLE);
@@ -49,9 +56,19 @@ public class MainActivity extends AppCompatActivity {
         if (alumno) layoutError.setVisibility(VISIBLE);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            currentUser.reload();
+        }
+    }
+
     public void aceptaIngreso(View view) {
 
-        final MainActivity thisActivity = this;
+        final LoginActivity thisActivity = this;
 
         profesor = Boolean.FALSE;
         alumno = Boolean.FALSE;
@@ -70,13 +87,30 @@ public class MainActivity extends AppCompatActivity {
                 final Alumno datosAlumno;
                 if (snapshot.exists()) {
                     datosAlumno = snapshot.getValue(Alumno.class);
+                    mAuth.signInWithEmailAndPassword(datosAlumno.getEmail(), contrasena)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()){
+                                    Intent intent = new Intent(thisActivity, RutinaActivity.class);
+                                    intent.putExtra("documento", datosAlumno.getDocumento());
+                                    startActivity(intent);
+                                }else{
+                                    //Utility.showDialog(getActivity(), task);
+                                    System.out.println("no");
+                                }
+
+                            });
+
+
+                    /*
                     if (datosAlumno.getContrasena().equals(contrasena)) {
                         layoutError.setVisibility(View.INVISIBLE);
                         Intent intent = new Intent(thisActivity, Rutina.class);
+                        intent.putExtra("user", datosAlumno.getEmail());
+                        intent.putExtra("pass", contrasena);
                         startActivity(intent);
                     }
                     else layoutError.setVisibility(VISIBLE);
-
+                    */
                 }
               else noEncontradoAlumno();
             }
@@ -121,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textoDocumento = findViewById(R.id.textoDocumento);

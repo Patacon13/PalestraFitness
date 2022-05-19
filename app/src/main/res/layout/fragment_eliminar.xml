@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.main.Eliminar"
+    tools:context=".ui.administration.PestañaBajaAlta"
     >
 
 
     <TableLayout
-        android:gravity="center"
         android:id="@+id/tableLayout2"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="393dp">
+        android:layout_height="208dp"
+        android:layout_marginBottom="393dp"
+        android:gravity="center">
 
         <TableRow
             android:layout_height="match_parent"
@@ -41,9 +41,9 @@
         </TableRow>
 
         <TableRow
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <EditText
                 android:id="@+id/textoDNI"
@@ -107,10 +107,10 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:gravity="center"
                         android:id="@+id/textView26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Estado"
                         android:textSize="20sp" />
                 </TableRow>
@@ -122,11 +122,10 @@
 
     <Button
         android:id="@+id/suspenderBoton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="145dp"
+        android:layout_width="136dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
         android:text="Suspender/Reactivar" />
 
 </LinearLayout>
