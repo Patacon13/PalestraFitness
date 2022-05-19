@@ -28,11 +28,6 @@ import com.utn.palestrafitness.R;
 import java.util.HashMap;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PestañaBajaAlta#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PestañaBajaAlta extends Fragment {
 
     TableLayout tablaEliminar;
@@ -221,28 +216,6 @@ public class PestañaBajaAlta extends Fragment {
 
             }
         });
-    }
-
-
-
-
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Eliminar.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PestañaBajaAlta newInstance(String param1, String param2) {
-        PestañaBajaAlta fragment = new PestañaBajaAlta();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override

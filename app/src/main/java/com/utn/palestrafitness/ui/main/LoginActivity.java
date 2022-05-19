@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Query busquedaAlumno = rootRef.getReference().child("Usuario/Alumno/" + documento + "/"); //
 
-        busquedaAlumno.addValueEventListener(new ValueEventListener() {
+        busquedaAlumno.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
         Query busquedaProfesor = rootRef.getReference().child("Usuario/Profesor/" + documento + "/");
 
 
-        busquedaProfesor.addValueEventListener(new ValueEventListener() {
+        busquedaProfesor.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
