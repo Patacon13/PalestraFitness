@@ -1,25 +1,34 @@
 package com.utn.palestrafitness.ui.administration;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.utn.palestrafitness.R;
+import com.utn.palestrafitness.lib.Alumno;
+import com.utn.palestrafitness.ui.rutina.RutinaActivity;
 
 public class PestañaEditarRutina extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FirebaseAuth mAuth;
+    private TextView documentoAEditar;
 
     public PestañaEditarRutina() {
         // Required empty public constructor
@@ -28,16 +37,46 @@ public class PestañaEditarRutina extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    }
+
+    private void accederARutina() {
+        FirebaseDatabase rootRef = FirebaseDatabase.getInstance();
+        Query busquedaAlumno = rootRef.getReference().child("Usuario/Alumno/" + documentoAEditar.getText().toString() + "/");
+
+        busquedaAlumno.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Alumno datosAlumno = snapshot.getValue(Alumno.class);
+
+                Intent intent = new Intent(getActivity(), RutinaActivity.class);
+                intent.putExtra("documento", datosAlumno.getDocumento());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_editar, container, false);
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+        View view = inflater.inflate(R.layout.fragment_editar, container, false);
+
+        documentoAEditar = view.findViewById(R.id.documentoEditar);
+
+        Button botonEditar = view.findViewById(R.id.botonEditarRutina);
+
+        botonEditar.setOnClickListener(l -> accederARutina());
+
+        return view;
     }
 }

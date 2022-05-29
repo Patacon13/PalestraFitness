@@ -115,7 +115,7 @@
             android:textSize="60sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/botonEditarRutina"
             android:layout_width="231dp"
             android:layout_height="72dp"
             android:gravity="center"

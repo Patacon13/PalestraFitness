@@ -37,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
 
     LinearLayout layoutError;
 
-    Boolean alumno = Boolean.FALSE;
 
     Boolean profesor = Boolean.FALSE;
     private FirebaseAuth mAuth;
@@ -46,14 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         layoutError.setVisibility(INVISIBLE);
     }
 
-    public void noEncontradoAlumno() {
-        alumno = Boolean.TRUE;
-        if (profesor) layoutError.setVisibility(VISIBLE);
-    }
-
-    public void noEncontradoProfesor() {
-        profesor = Boolean.TRUE;
-        if (alumno) layoutError.setVisibility(VISIBLE);
+    public void noEncontrado() {
+        layoutError.setVisibility(VISIBLE);
     }
 
     @Override
@@ -70,8 +63,6 @@ public class LoginActivity extends AppCompatActivity {
 
         final LoginActivity thisActivity = this;
 
-        profesor = Boolean.FALSE;
-        alumno = Boolean.FALSE;
 
         String documento = textoDocumento.getText().toString();
         String contrasena = textoContrasena.getText().toString();
@@ -95,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }else{
                                     //Utility.showDialog(getActivity(), task);
-                                    System.out.println("no");
+                                    noEncontrado();
                                 }
 
                             });
@@ -112,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                     else layoutError.setVisibility(VISIBLE);
                     */
                 }
-              else noEncontradoAlumno();
+              else noEncontrado();
             }
 
             @Override
@@ -140,9 +131,9 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(thisActivity, AdministrationActivity.class);
                         startActivity(intent);
                     }
-                    else layoutError.setVisibility(VISIBLE);
+                    else noEncontrado();
                 }
-            else noEncontradoProfesor();
+            else noEncontrado();
 
             }
 

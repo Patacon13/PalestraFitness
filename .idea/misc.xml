@@ -18,7 +18,7 @@
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_administration.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_agregar.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_editar.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_editar.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_eliminar.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_error_usuario.xml" value="0.75" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.153125" />

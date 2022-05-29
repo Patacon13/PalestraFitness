@@ -63,7 +63,6 @@ public class PestañaBajaAlta extends Fragment {
     }
 
     public void buscarAlumno() {
-        System.out.println("me llamaron");
         FirebaseDatabase rootRef = FirebaseDatabase.getInstance();
         dni = textoDni.getText().toString();
         this.usuario = textoUsuario.getText().toString();
