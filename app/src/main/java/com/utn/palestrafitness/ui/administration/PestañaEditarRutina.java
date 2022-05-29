@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,8 @@ public class PestañaEditarRutina extends Fragment {
 
     private FirebaseAuth mAuth;
     private TextView documentoAEditar;
+    private TextView alumnoNoEncontrado;
+
 
     public PestañaEditarRutina() {
         // Required empty public constructor
@@ -39,18 +42,30 @@ public class PestañaEditarRutina extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    private void escondeError() {
+        alumnoNoEncontrado.setVisibility(View.INVISIBLE);
+    }
+
+    private void muestraErorr() {
+        alumnoNoEncontrado.setVisibility(View.VISIBLE);
+    }
+
     private void accederARutina() {
+        escondeError();
         FirebaseDatabase rootRef = FirebaseDatabase.getInstance();
         Query busquedaAlumno = rootRef.getReference().child("Usuario/Alumno/" + documentoAEditar.getText().toString() + "/");
 
         busquedaAlumno.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Alumno datosAlumno = snapshot.getValue(Alumno.class);
+                if (snapshot.exists()) {
+                    Alumno datosAlumno = snapshot.getValue(Alumno.class);
 
-                Intent intent = new Intent(getActivity(), RutinaActivity.class);
-                intent.putExtra("documento", datosAlumno.getDocumento());
-                startActivity(intent);
+                    Intent intent = new Intent(getActivity(), RutinaActivity.class);
+                    intent.putExtra("documento", datosAlumno.getDocumento());
+                    startActivity(intent);
+                }
+                else muestraErorr();
             }
 
             @Override
@@ -74,6 +89,8 @@ public class PestañaEditarRutina extends Fragment {
         documentoAEditar = view.findViewById(R.id.documentoEditar);
 
         Button botonEditar = view.findViewById(R.id.botonEditarRutina);
+
+        alumnoNoEncontrado = view.findViewById(R.id.alumnoNoEncontrado);
 
         botonEditar.setOnClickListener(l -> accederARutina());
 

@@ -5,20 +5,20 @@
       <map>
         <entry key="app/src/main/res/drawable/border.xml" value="0.3165" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout-large/activity_main.xml" value="0.67" />
+        <entry key="app/src/main/res/layout-large/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout-normal/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout-normal/fragment_eliminar.xml" value="0.2536290322580645" />
         <entry key="app/src/main/res/layout-w1240dp/content_scrolling.xml" value="0.1" />
         <entry key="app/src/main/res/layout-w936dp/content_scrolling.xml" value="0.11484375" />
-        <entry key="app/src/main/res/layout-xlarge/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-xlarge/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_administration.xml" value="0.2604166666666667" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="1.0" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_rutina.xml" value="0.1026252983293556" />
         <entry key="app/src/main/res/layout/content_rutina.xml" value="0.153125" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_administration.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/fragment_agregar.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_editar.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/fragment_editar.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_eliminar.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_error_usuario.xml" value="0.75" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.153125" />

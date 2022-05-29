@@ -64,38 +64,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/layoutError"
-        android:layout_width="215dp"
-        android:layout_height="102dp"
-        android:layout_marginTop="11dp"
-        android:background="#FFFFFF"
+    <TextView
+        android:id="@+id/textoErrorLogin"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
         android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.013">
-
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
-            android:gravity="center"
-            android:text="El usuario o contraseña es incorrecto"
-            android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/botonEditarRutina"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:onClick="cierraMensaje"
-            android:text="Aceptar" />
-
-    </LinearLayout>
+        android:text="El usuario o contraseña es incorrecto"
+        android:textColor="#000000"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="183dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

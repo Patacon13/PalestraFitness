@@ -12,9 +12,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,18 +35,18 @@ public class LoginActivity extends AppCompatActivity {
 
     FragmentContainerView fragmentoError;
 
-    LinearLayout layoutError;
+    TextView textoError;
 
-
+    Boolean alumno = Boolean.FALSE;
     Boolean profesor = Boolean.FALSE;
     private FirebaseAuth mAuth;
 
     public void cierraMensaje(View view) {
-        layoutError.setVisibility(INVISIBLE);
+        textoError.setVisibility(INVISIBLE);
     }
 
     public void noEncontrado() {
-        layoutError.setVisibility(VISIBLE);
+        textoError.setVisibility(VISIBLE);
     }
 
     @Override
@@ -59,10 +59,51 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void buscarProfesor(LoginActivity thisActivity, FirebaseDatabase rootRef, String documento, String contrasena) {
+
+        Query busquedaProfesor = rootRef.getReference().child("Usuario/Profesor/" + documento + "/");
+
+
+        busquedaProfesor.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                Profesor datosProfesor;
+
+                if (snapshot.exists()) {
+                    System.out.println(snapshot.getValue(Profesor.class));
+                    datosProfesor = snapshot.getValue(Profesor.class);
+
+                    if (datosProfesor.getContrasena().equals(contrasena)) {
+                        profesor = Boolean.TRUE ;
+                        textoError.setVisibility(View.INVISIBLE);
+                        Intent intent = new Intent(thisActivity, AdministrationActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        noEncontrado();
+                    }
+                }
+                else {
+                    noEncontrado();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void aceptaIngreso(View view) {
 
         final LoginActivity thisActivity = this;
-
+        alumno = Boolean.FALSE;
+        profesor = Boolean.FALSE;
+        cierraMensaje(view);
 
         String documento = textoDocumento.getText().toString();
         String contrasena = textoContrasena.getText().toString();
@@ -81,60 +122,19 @@ public class LoginActivity extends AppCompatActivity {
                     mAuth.signInWithEmailAndPassword(datosAlumno.getEmail(), contrasena)
                             .addOnCompleteListener(task -> {
                                 if (task.isSuccessful()){
+                                    alumno = Boolean.TRUE;
                                     Intent intent = new Intent(thisActivity, RutinaActivity.class);
                                     intent.putExtra("documento", datosAlumno.getDocumento());
                                     startActivity(intent);
                                 }else{
                                     //Utility.showDialog(getActivity(), task);
-                                    noEncontrado();
+                                    buscarProfesor(thisActivity, rootRef, documento, contrasena);
                                 }
 
                             });
-
-
-                    /*
-                    if (datosAlumno.getContrasena().equals(contrasena)) {
-                        layoutError.setVisibility(View.INVISIBLE);
-                        Intent intent = new Intent(thisActivity, Rutina.class);
-                        intent.putExtra("user", datosAlumno.getEmail());
-                        intent.putExtra("pass", contrasena);
-                        startActivity(intent);
-                    }
-                    else layoutError.setVisibility(VISIBLE);
-                    */
                 }
-              else noEncontrado();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Query busquedaProfesor = rootRef.getReference().child("Usuario/Profesor/" + documento + "/");
-
-
-        busquedaProfesor.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                Profesor datosProfesor;
-
-                if (snapshot.exists()) {
-                    System.out.println(snapshot.getValue(Profesor.class));
-                    datosProfesor = snapshot.getValue(Profesor.class);
-
-                    if (datosProfesor.getContrasena().equals(contrasena)) {
-                        layoutError.setVisibility(View.INVISIBLE);
-                        Intent intent = new Intent(thisActivity, AdministrationActivity.class);
-                        startActivity(intent);
-                    }
-                    else noEncontrado();
-                }
-            else noEncontrado();
-
+                else
+                    buscarProfesor(thisActivity, rootRef, documento, contrasena);
             }
 
             @Override
@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button botonAceptar = findViewById(R.id.botonAceptar);
 
-        layoutError = findViewById(R.id.layoutError);
+        textoError = findViewById(R.id.textoErrorLogin);
 
         botonAceptar.setBackgroundColor(Color.rgb(255,165,0));
 

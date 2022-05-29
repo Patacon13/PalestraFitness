@@ -26,6 +26,7 @@ import com.utn.palestrafitness.lib.Alumno;
 import com.utn.palestrafitness.R;
 
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class PestañaBajaAlta extends Fragment {
@@ -53,6 +54,7 @@ public class PestañaBajaAlta extends Fragment {
     private TextView textoDni;
     private TextView textoUsuario;
     private TextView textoApellido;
+    private TextView textoBaja;
 
     private Button button;
     private int defaultColor;
@@ -63,6 +65,7 @@ public class PestañaBajaAlta extends Fragment {
     }
 
     public void buscarAlumno() {
+        textoBaja.setVisibility(View.INVISIBLE);
         FirebaseDatabase rootRef = FirebaseDatabase.getInstance();
         dni = textoDni.getText().toString();
         this.usuario = textoUsuario.getText().toString();
@@ -70,7 +73,6 @@ public class PestañaBajaAlta extends Fragment {
         Query consulta = rootRef.getReference().child("Usuario/Alumno/" + dni + "/");
 
         tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);
-
 
         if (!dni.isEmpty()) {
             consulta.addValueEventListener(new ValueEventListener() {
@@ -81,7 +83,7 @@ public class PestañaBajaAlta extends Fragment {
 
                         System.out.println("Entrando1");
 
-                        HashMap esteAlumno = ((HashMap) snapshot.getValue());
+                        Alumno esteAlumno = snapshot.getValue(Alumno.class);
 
                         TableRow fila = new TableRow(thisView.getContext());
                         TextView nombre = new TextView(thisView.getContext());
@@ -103,10 +105,10 @@ public class PestañaBajaAlta extends Fragment {
                         });
                         fila.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
-                        nombre.setText((String) esteAlumno.get("usuario"));
-                        apellido.setText((String) esteAlumno.get("apellido"));
-                        documento.setText((String) esteAlumno.get("documento"));
-                        estado.setBackgroundColor((Boolean) (esteAlumno.get("esAlumnoActivo")) ? Color.GREEN : Color.RED);
+                        nombre.setText(esteAlumno.getUsuario());
+                        apellido.setText(esteAlumno.getApellido());
+                        documento.setText(esteAlumno.getDocumento());
+                        estado.setBackgroundColor((esteAlumno.getEsAlumnoActivo()) ? Color.GREEN : Color.RED);
 
                         fila.addView(nombre);
                         fila.addView(apellido);
@@ -114,13 +116,15 @@ public class PestañaBajaAlta extends Fragment {
                         fila.addView(estado);
                         fila.setGravity(Gravity.CENTER);
                         if (documento.getText().toString() != "") tablaEliminar.addView(fila);
-                    } else System.out.println("no"); //todo: implementar
+                    } else textoBaja.setVisibility(View.VISIBLE); //todo: implementar
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
+
+
             });
         }
 
@@ -134,8 +138,10 @@ public class PestañaBajaAlta extends Fragment {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    AtomicReference<Boolean> encontreAlguno = new AtomicReference<>(Boolean.FALSE);
                     if (snapshot.exists()) {
                         HashMap encontrados = ((HashMap) snapshot.getValue());
+                        System.out.println("AKIFE" + encontrados);
                         encontrados.forEach((documentoClave, esteAlumno) -> {
                             System.out.println(documentoClave);
 
@@ -175,9 +181,13 @@ public class PestañaBajaAlta extends Fragment {
                                 fila.setGravity(Gravity.CENTER );
                                 System.out.println("Agrego " + nombre.getText().toString());
                                 tablaEliminar.addView(fila);
+                                encontreAlguno.set(Boolean.TRUE);
                             }
                         });
-                    } else System.out.println("no"); //todo: implementar
+                        if (!encontreAlguno.get()) {
+                            textoBaja.setVisibility(View.VISIBLE);
+                        }
+                    } else textoBaja.setVisibility(View.VISIBLE); //todo: implementar
                 }
 
                 @Override
@@ -199,15 +209,20 @@ public class PestañaBajaAlta extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                Alumno datosAlumno = snapshot.getValue(Alumno.class);
+
+                if (snapshot.exists()) {
+                    Alumno datosAlumno = snapshot.getValue(Alumno.class);
 
 
-                datosAlumno.setEsAlumnoActivo(!datosAlumno.getEsAlumnoActivo());
+                    datosAlumno.setEsAlumnoActivo(!datosAlumno.getEsAlumnoActivo());
 
-                snapshot.getRef().setValue(datosAlumno);
+                    snapshot.getRef().setValue(datosAlumno);
 
-                tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);
+                    tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);
+                }
+                else {
 
+                }
             }
 
             @Override
@@ -249,6 +264,8 @@ public class PestañaBajaAlta extends Fragment {
         textoUsuario = view.findViewById(R.id.nombreBaja);
 
         textoApellido = view.findViewById(R.id.apellidoBaja);
+
+        textoBaja = view.findViewById(R.id.textoErrorBaja);
 
         thisView = view;
 
