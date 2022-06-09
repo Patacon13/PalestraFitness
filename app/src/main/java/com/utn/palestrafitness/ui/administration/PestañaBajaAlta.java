@@ -76,7 +76,7 @@ public class PestañaBajaAlta extends Fragment {
         tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);
 
         if (!dni.isEmpty()) {
-            consulta.addValueEventListener(new ValueEventListener() {
+            consulta.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
@@ -144,7 +144,7 @@ public class PestañaBajaAlta extends Fragment {
         Query consultaPorNombre = rootRef.getReference().child("Usuario/Alumno/");
 
         if (dni.isEmpty()) {
-            consultaPorNombre.addValueEventListener(new ValueEventListener() {
+            consultaPorNombre.addListenerForSingleValueEvent(new ValueEventListener() {
                 String textoApellido = apellido;
                 String textoNombre = usuario;
 
@@ -243,7 +243,7 @@ public class PestañaBajaAlta extends Fragment {
                     datosAlumno.setEsAlumnoActivo(!datosAlumno.getEsAlumnoActivo());
 
                     snapshot.getRef().setValue(datosAlumno);
-                    tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);
+                    seleccionado.getChildAt(3).setBackgroundColor(datosAlumno.getEsAlumnoActivo() ? Color.GREEN : Color.RED);
                 }
                 else {
 
