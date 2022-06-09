@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -110,6 +112,9 @@ public class PestañaAgregar extends Fragment {
             errorAgregar.setVisibility(View.VISIBLE);
             return;
         }
+        else{
+            Toast.makeText(getContext(),"El usuario ha sido agregado con éxito",Toast.LENGTH_LONG).show();
+        }
 
         if (esProfesor) {
             Profesor profesor = new Profesor(user, apellido, documento, telefono, email, sexo, password);
@@ -133,8 +138,6 @@ public class PestañaAgregar extends Fragment {
             }
 
         });
-
-
     }
 
 
