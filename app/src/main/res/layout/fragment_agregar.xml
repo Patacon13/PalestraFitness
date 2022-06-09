@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".ui.administration.PestañaAgregar">
 
 
@@ -173,7 +174,8 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </TableRow>
 
@@ -190,5 +192,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <TextView
+        android:id="@+id/errorAgregar"
+        android:layout_width="277dp"
+        android:layout_height="30dp"
+        android:text="Faltan completar campos"
+        android:textColor="#FF1414"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonAgregar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
