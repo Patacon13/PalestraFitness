@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -58,7 +60,6 @@ public class PestañaBajaAlta extends Fragment {
 
     private Button button;
     private int defaultColor;
-    private TableLayout tablaClientes;
 
     public PestañaBajaAlta() {
         // Required empty public constructor
@@ -80,19 +81,31 @@ public class PestañaBajaAlta extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
 
-
-                        System.out.println("Entrando1");
-
                         Alumno esteAlumno = snapshot.getValue(Alumno.class);
+
+                        TableRow.LayoutParams param = new TableRow.LayoutParams(
+                                TableRow.LayoutParams.MATCH_PARENT,
+                                TableRow.LayoutParams.MATCH_PARENT,
+                                1
+                        );
 
                         TableRow fila = new TableRow(thisView.getContext());
                         TextView nombre = new TextView(thisView.getContext());
                         nombre.setTextSize(21);
+                        nombre.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                                TableRow.LayoutParams.MATCH_PARENT));
+                        nombre.setGravity(Gravity.CENTER);
                         TextView apellido = new TextView(thisView.getContext());
                         apellido.setTextSize(21);
+                        apellido.setLayoutParams(param);
+                        apellido.setGravity(Gravity.CENTER);
                         TextView documento = new TextView(thisView.getContext());
                         documento.setTextSize(21);
+                        documento.setLayoutParams(param);
+                        documento.setGravity(Gravity.CENTER);
                         TextView estado = new TextView(thisView.getContext());
+                        estado.setLayoutParams(param);
+                        estado.setGravity(Gravity.CENTER);
 
                         fila.setClickable(true);
                         for (int i = 0; i < tablaEliminar.getChildCount(); i++) {
@@ -141,18 +154,32 @@ public class PestañaBajaAlta extends Fragment {
                     AtomicReference<Boolean> encontreAlguno = new AtomicReference<>(Boolean.FALSE);
                     if (snapshot.exists()) {
                         HashMap encontrados = ((HashMap) snapshot.getValue());
-                        System.out.println("AKIFE" + encontrados);
                         encontrados.forEach((documentoClave, esteAlumno) -> {
                             System.out.println(documentoClave);
 
+                            TableRow.LayoutParams param = new TableRow.LayoutParams(
+                                    TableRow.LayoutParams.MATCH_PARENT,
+                                    TableRow.LayoutParams.MATCH_PARENT,
+                                    1
+                            );
                             TableRow fila = new TableRow(thisView.getContext());
                             TextView nombre = new TextView(thisView.getContext());
                             nombre.setTextSize(21);
+                            nombre.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                                    TableRow.LayoutParams.MATCH_PARENT));
+                            nombre.setGravity(Gravity.CENTER);
                             TextView apellido = new TextView(thisView.getContext());
                             apellido.setTextSize(21);
+                            apellido.setLayoutParams(param);
+                            apellido.setGravity(Gravity.CENTER);
                             TextView documento = new TextView(thisView.getContext());
                             documento.setTextSize(21);
+                            documento.setLayoutParams(param);
+                            documento.setGravity(Gravity.CENTER);
                             TextView estado = new TextView(thisView.getContext());
+                            estado.setLayoutParams(param);
+                            estado.setGravity(Gravity.CENTER);
+
 
                             fila.setClickable(true);
                             fila.setOnClickListener(v -> {
@@ -178,7 +205,6 @@ public class PestañaBajaAlta extends Fragment {
                                 fila.addView(apellido);
                                 fila.addView(documento);
                                 fila.addView(estado);
-                                fila.setGravity(Gravity.CENTER );
                                 System.out.println("Agrego " + nombre.getText().toString());
                                 tablaEliminar.addView(fila);
                                 encontreAlguno.set(Boolean.TRUE);
@@ -217,7 +243,6 @@ public class PestañaBajaAlta extends Fragment {
                     datosAlumno.setEsAlumnoActivo(!datosAlumno.getEsAlumnoActivo());
 
                     snapshot.getRef().setValue(datosAlumno);
-
                     tablaEliminar.removeViews(1, tablaEliminar.getChildCount() - 1);
                 }
                 else {
@@ -251,15 +276,13 @@ public class PestañaBajaAlta extends Fragment {
 
         suspenderBoton = view.findViewById(R.id.suspenderBoton);
 
-        tablaClientes = view.findViewById(R.id.tablaEliminar);
-
         button = view.findViewById(R.id.botonBuscar);
 
         button.setOnClickListener(view1 -> buscarAlumno());
 
         textoDni = view.findViewById(R.id.textoDNI);
 
-        tablaEliminar = view.findViewById(R.id.tablaEliminar);
+        tablaEliminar = view.findViewById(R.id.LinearEliminar);
 
         textoUsuario = view.findViewById(R.id.nombreBaja);
 

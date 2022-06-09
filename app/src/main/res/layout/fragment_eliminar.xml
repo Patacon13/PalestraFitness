@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.administration.PestañaBajaAlta"
-    >
+    tools:context=".ui.administration.PestañaBajaAlta">
 
 
     <TableLayout
-        android:id="@+id/tableLayout2"
+        android:stretchColumns="0,1"
+        android:id="@+id/tablaEliminar"
         android:layout_width="match_parent"
-        android:layout_height="208dp"
-        android:layout_marginBottom="393dp"
-        android:gravity="center">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/suspenderBoton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
 
             <EditText
                 android:id="@+id/nombreBaja"
-                android:layout_width="156dp"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_column="0"
+                android:layout_weight="0"
                 android:ems="10"
                 android:hint="Nombre"
                 android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/apellidoBaja"
-                android:layout_width="159dp"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_column="1"
+                android:layout_weight="1"
                 android:ems="10"
                 android:hint="Apellido"
                 android:inputType="textPersonName" />
@@ -47,18 +52,21 @@
 
             <EditText
                 android:id="@+id/textoDNI"
-                android:layout_width="167dp"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_column="0"
+                android:layout_weight="0"
                 android:ems="10"
                 android:hint="DNI"
                 android:inputType="numberSigned" />
 
             <Button
                 android:id="@+id/botonBuscar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_column="1"
+                android:layout_weight="1"
+
                 android:text="Buscar" />
 
         </TableRow>
@@ -69,8 +77,8 @@
 
             <TextView
                 android:id="@+id/textoErrorBaja"
-                android:layout_width="219dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_span="2"
                 android:layout_weight="2"
                 android:gravity="center"
@@ -78,71 +86,74 @@
                 android:textColor="#FF0000"
                 android:visibility="invisible" />
         </TableRow>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableLayout
-
-                android:id="@+id/tablaEliminar"
-                android:layout_width="wrap_content"
-                android:layout_height="175dp"
-                android:layout_span="2"
-                android:layout_weight="2">
-
-                <TableRow
+                <TableLayout
+                    android:id="@+id/LinearEliminar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                        android:id="@+id/textView17"
-                        android:layout_width="97dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Nombre"
-                        android:textSize="20sp" />
+                        <TextView
 
-                    <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Nombre"
+                            android:textSize="24sp" />
 
-                        android:id="@+id/textView18"
-                        android:layout_width="95dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Apellido"
-                        android:textSize="20sp" />
+                        <TextView
 
-                    <TextView
+                            android:id="@+id/textView18"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Apellido"
+                            android:textSize="24sp" />
 
-                        android:id="@+id/textView19"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="DNI"
-                        android:textSize="20sp" />
+                        <TextView
 
-                    <TextView
-                        android:id="@+id/textView26"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Estado"
-                        android:textSize="20sp" />
-                </TableRow>
+                            android:id="@+id/textView19"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
 
-            </TableLayout>
-        </TableRow>
+                            android:text="DNI"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/textView26"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:text="Estado"
+                            android:textSize="24sp" />
+                    </TableRow>
+                </TableLayout>
+            </ScrollView>
 
     </TableLayout>
 
     <Button
         android:id="@+id/suspenderBoton"
-        android:layout_width="136dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_alignParentBottom="true"
-        android:text="Suspender/Reactivar" />
+        android:layout_width="168dp"
+        android:layout_height="67dp"
+        android:text="Suspender/Reactivar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tablaEliminar"
+        app:layout_constraintStart_toEndOf="@+id/tablaEliminar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tablaEliminar" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
