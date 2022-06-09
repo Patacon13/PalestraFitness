@@ -1,5 +1,6 @@
 package com.utn.palestrafitness.ui.administration;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -41,15 +42,60 @@ public class PestañaAgregar extends Fragment {
     private Spinner sexoSpinner;
     private CheckBox profesor;
     private TextView textoPass;
+    private TextView errorAgregar;
+
+    private int defaultTextColor;
 
     public PestañaAgregar() {
         // Required empty public constructor
     }
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+
+    private void pintaDefault() {
+        textoUsuario.setBackgroundColor(defaultTextColor);
+        textoApellido.setBackgroundColor(defaultTextColor);
+        textoDocumento.setBackgroundColor(defaultTextColor);
+        textoTelefono.setBackgroundColor(defaultTextColor);
+        textoEmail.setBackgroundColor(defaultTextColor);
+        textoPass.setBackgroundColor(defaultTextColor);
+    }
+
+    private boolean pintaErrores(String user, String apellido, String documento, String telefono, String email, String sexo, String password) {
+        Boolean hayErrores = false;
+        if (user.isEmpty()) {
+            textoUsuario.setBackgroundColor(Color.RED);
+            hayErrores = true;
+        }
+        if (apellido.isEmpty()) {
+            textoApellido.setBackgroundColor(Color.RED);
+            hayErrores = true;
+        }
+        if (documento.isEmpty()) {
+            textoDocumento.setBackgroundColor(Color.RED);
+            hayErrores = true;
+        }
+        if (telefono.isEmpty()) {
+            textoTelefono.setBackgroundColor(Color.RED);
+            hayErrores = true;
+        }
+        if (email.isEmpty()) {
+            textoEmail.setBackgroundColor(Color.RED);
+            hayErrores = true;
+        }
+        if (password.isEmpty()) {
+            textoPass.setBackgroundColor(Color.RED);
+            hayErrores = true;
+        }
+        return hayErrores;
+    }
+
     private void agregaUsuario(View view) {
 
         rootNode = FirebaseDatabase.getInstance();
+
+        pintaDefault();
+        errorAgregar.setVisibility(View.INVISIBLE);
 
         String user = textoUsuario.getText().toString();
         String apellido = textoApellido.getText().toString();
@@ -59,6 +105,11 @@ public class PestañaAgregar extends Fragment {
         String sexo = (String) sexoSpinner.getSelectedItem();
         String password = textoPass.getText().toString();
         Boolean esProfesor = profesor.isChecked();
+
+        if (pintaErrores(user, apellido, documento, telefono, email, sexo, password)) {
+            errorAgregar.setVisibility(View.VISIBLE);
+            return;
+        }
 
         if (esProfesor) {
             Profesor profesor = new Profesor(user, apellido, documento, telefono, email, sexo, password);
@@ -124,8 +175,11 @@ public class PestañaAgregar extends Fragment {
 
         Button button = view.findViewById(R.id.botonAgregar);
 
+        errorAgregar = view.findViewById(R.id.errorAgregar);
+
         button.setOnClickListener(view1 -> agregaUsuario(view1));
 
+        defaultTextColor = textoApellido.getSolidColor();
 
 
         return view;
