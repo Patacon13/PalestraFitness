@@ -66,7 +66,7 @@ public class RutinaActivity extends AppCompatActivity {
                 repeticiones.setText("Repeticiones");
 
                 dia.setTextSize(21);
-                dia.setTextColor(Color.BLACK);
+                dia.setTextColor(Color.CYAN);
                 peso.setTextSize(21);
                 peso.setTextColor(Color.BLACK);
                 series.setTextSize(21);
@@ -188,7 +188,7 @@ public class RutinaActivity extends AppCompatActivity {
                         EditText peso = new EditText(this);
                         peso.setText(ejercicioDeEsteDia.getPeso());
                         peso.setTextColor(Color.BLACK);
-                        peso.setBackgroundResource(R.drawable.border);
+                        if (k == 0) peso.setBackgroundResource(R.drawable.border);
                         filaEjercicio.addView(peso);
 
                         peso.addTextChangedListener(new TextWatcher() {
