@@ -196,7 +196,7 @@
         android:id="@+id/errorAgregar"
         android:layout_width="277dp"
         android:layout_height="30dp"
-        android:text="Faltan completar campos"
+        android:text="Revise los campos incorrectos"
         android:textColor="#FF1414"
         android:textSize="20sp"
         android:visibility="invisible"

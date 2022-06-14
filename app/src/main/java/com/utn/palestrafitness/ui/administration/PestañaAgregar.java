@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.utn.palestrafitness.lib.Alumno;
 import com.utn.palestrafitness.lib.Profesor;
 import com.utn.palestrafitness.R;
+
+import java.util.regex.Pattern;
 
 public class PestañaAgregar extends Fragment {
 
@@ -64,24 +67,26 @@ public class PestañaAgregar extends Fragment {
     }
 
     private boolean pintaErrores(String user, String apellido, String documento, String telefono, String email, String sexo, String password) {
+        Pattern pattern=Patterns.EMAIL_ADDRESS;
+
         Boolean hayErrores = false;
-        if (user.isEmpty()) {
+        if (user.isEmpty() || user.matches(".*[0-9].*") || user.length()>50) {
             textoUsuario.setBackgroundColor(Color.RED);
             hayErrores = true;
         }
-        if (apellido.isEmpty()) {
+        if (apellido.isEmpty() || apellido.matches(".*[0-9].*") || apellido.length()>50) {
             textoApellido.setBackgroundColor(Color.RED);
             hayErrores = true;
         }
-        if (documento.isEmpty()) {
+        if (documento.isEmpty() || documento.length()==8) {
             textoDocumento.setBackgroundColor(Color.RED);
             hayErrores = true;
         }
-        if (telefono.isEmpty()) {
+        if (telefono.isEmpty() || telefono.length()>15) {
             textoTelefono.setBackgroundColor(Color.RED);
             hayErrores = true;
         }
-        if (email.isEmpty()) {
+        if (email.isEmpty() || !pattern.matcher(email).matches()) {
             textoEmail.setBackgroundColor(Color.RED);
             hayErrores = true;
         }
@@ -92,7 +97,9 @@ public class PestañaAgregar extends Fragment {
         return hayErrores;
     }
 
+
     private void agregaUsuario(View view) {
+
 
         rootNode = FirebaseDatabase.getInstance();
 
@@ -107,6 +114,8 @@ public class PestañaAgregar extends Fragment {
         String sexo = (String) sexoSpinner.getSelectedItem();
         String password = textoPass.getText().toString();
         Boolean esProfesor = profesor.isChecked();
+
+
 
         if (pintaErrores(user, apellido, documento, telefono, email, sexo, password)) {
             errorAgregar.setVisibility(View.VISIBLE);
@@ -174,6 +183,7 @@ public class PestañaAgregar extends Fragment {
         sexoSpinner = view.findViewById(R.id.genero);
         profesor = view.findViewById(R.id.profesor);
         textoPass = view.findViewById(R.id.contrasena);
+
 
 
         Button button = view.findViewById(R.id.botonAgregar);
