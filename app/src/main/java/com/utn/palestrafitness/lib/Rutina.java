@@ -9,16 +9,13 @@ import java.util.Map;
 public class Rutina {
 
     private ArrayList<ArrayList<Ejercicio>> ejercicios;
-    private String documento;
+    private Integer cantidadDias;
 
     public void pushEjercicio(Ejercicio ejercicio, Integer semana, Integer dia) {
         if (ejercicios.get(semana) == null) ejercicios.set(semana, new ArrayList<>());
         ejercicios.get(semana).set(dia, ejercicio);
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
 
     public ArrayList<ArrayList<Ejercicio>> getEjercicios() {
         return ejercicios;
@@ -28,16 +25,20 @@ public class Rutina {
         this.ejercicios = ejercicios;
     }
 
-    public String getDocumento() {
-        return documento;
+    public Integer getCantidadDias() {
+        return cantidadDias;
+    }
+
+    public void setCantidadDias(Integer cantidadDias) {
+        this.cantidadDias = cantidadDias;
     }
 
     public Rutina () {
         ejercicios = new ArrayList<>();
     }
 
-    public Rutina (String documento) {
-        this.documento = documento;
+    public Rutina (int cantidadDias) {
+        this.cantidadDias = cantidadDias;
         ejercicios = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             ejercicios.add(new ArrayList<>());

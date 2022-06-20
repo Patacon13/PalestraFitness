@@ -2,6 +2,9 @@ package com.utn.palestrafitness.ui.rutina;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +13,9 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -21,10 +27,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.utn.palestrafitness.ConfiguracionFragment;
 import com.utn.palestrafitness.R;
+import com.utn.palestrafitness.SettingsActivity;
 import com.utn.palestrafitness.lib.Alumno;
 import com.utn.palestrafitness.lib.Ejercicio;
 import com.utn.palestrafitness.lib.Rutina;
+import com.utn.palestrafitness.ui.administration.AdministrationActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +42,11 @@ import java.util.Map;
 public class RutinaActivity extends AppCompatActivity {
 
     Query busquedaRutina;
+
+    public void abreConfiguracion() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 
     private void llenarTabla (Rutina rutinaDelUsuario, ValueEventListener esteListener, DatabaseReference reference) {
         busquedaRutina.removeEventListener(esteListener);
@@ -93,7 +107,7 @@ public class RutinaActivity extends AppCompatActivity {
                 System.out.println(ejerciciosDeLaSemana.size());
 
 
-                for (int k = 0; k < 12; k++) {
+                for (int k = 0; k < rutinaDelUsuario.getCantidadDias()*4; k++) {
 
                     if (k % 4 == 0) {
                         if (ejerciciosDeLaSemana.size() <= (3*j) + (k / 4)) {
@@ -188,7 +202,7 @@ public class RutinaActivity extends AppCompatActivity {
                         EditText peso = new EditText(this);
                         peso.setText(ejercicioDeEsteDia.getPeso());
                         peso.setTextColor(Color.BLACK);
-                        if (k == 0) peso.setBackgroundResource(R.drawable.border);
+                        peso.setBackgroundResource(R.drawable.border);
                         filaEjercicio.addView(peso);
 
                         peso.addTextChangedListener(new TextWatcher() {
@@ -222,6 +236,7 @@ public class RutinaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rutina);
         Bundle extras = getIntent().getExtras();
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         String documento = extras.getString("documento");
 
@@ -244,7 +259,7 @@ public class RutinaActivity extends AppCompatActivity {
                     System.out.println("LA ENCONTREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
                 }
                 else {
-                    Rutina rutina = new Rutina(documento);
+                    Rutina rutina = new Rutina(3);
                     DatabaseReference reference = rootRef.getReference("Usuario/Rutina/");
                     System.out.println("gierogjeroigjer");
                     reference.child(documento).setValue(rutina);
@@ -261,5 +276,18 @@ public class RutinaActivity extends AppCompatActivity {
 
         tabla = findViewById(R.id.tablaEjercicios);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_rutina,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        abreConfiguracion();
+        return super.onOptionsItemSelected(item);
     }
 }

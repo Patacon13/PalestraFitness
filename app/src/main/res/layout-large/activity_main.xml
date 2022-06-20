@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:background="#201F1D"
     android:theme="@style/MyTheme"
+    android:id="@+id/container_main"
     tools:context=".ui.main.LoginActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="1235dp"
+        android:layout_width="match_parent"
         android:layout_height="330dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,10 +28,10 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="1280dp"
-        android:layout_height="324dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
         android:gravity="center"
+        android:onClick="recuperaContrasena"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +69,7 @@
             android:layout_height="53dp"
             android:gravity="center"
             android:text="El usuario o contraseña es incorrecto"
-            android:textColor="#000000"
+            android:textColor="#FF0000"
             android:textSize="23sp"
             android:visibility="invisible" />
 
@@ -81,6 +82,15 @@
             android:text="Aceptar"
             android:textSize="19dp"
             app:backgroundTint="@color/white" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="177dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Olvidé mi contraseña"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="#201F1D"
     android:theme="@style/MyTheme"
-    tools:context=".ui.main.LoginActivity">
+    android:id="@+id/container_main"
+    tools:context=".ui.main.LoginActivity"
+    >
 
     <ImageView
         android:id="@+id/imageView"
@@ -36,7 +38,7 @@
             android:layout_height="60dp"
             android:backgroundTint="@color/white"
             android:ems="10"
-            android:hint="DocumentoA"
+            android:hint="Documento"
             android:inputType="numberSigned"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -72,12 +74,24 @@
             android:text="Aceptar"
             app:backgroundTint="@color/white" />
 
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="recuperaContrasena"
+            android:text="Olvidé mi contraseña"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="90dp"
-        android:layout_height="39dp"
+        android:layout_width="93dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="244dp"
         android:text="@string/Datos"
         android:textColor="#FFFFFF"
         android:textSize="12sp"

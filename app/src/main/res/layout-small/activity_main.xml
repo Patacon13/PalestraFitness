@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#201F1D"
+    android:id="@+id/container_main"
     android:theme="@style/MyTheme"
     tools:context=".ui.main.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="318dp"
-        android:layout_height="157dp"
+        android:layout_width="124dp"
+        android:layout_height="69dp"
         android:layout_gravity="top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +21,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="912dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="263dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         <EditText
             android:id="@+id/textoDocumento"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="65dp"
             android:backgroundTint="@color/white"
             android:ems="10"
             android:hint="DocumentoA"
@@ -45,7 +45,7 @@
         <EditText
             android:id="@+id/textoContrasena"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="65dp"
             android:backgroundTint="@color/white"
             android:ems="10"
             android:hint="Contraseña"
@@ -57,7 +57,7 @@
 
         <TextView
             android:id="@+id/textoErrorLogin"
-            android:layout_width="883dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="El usuario o contraseña es incorrecto"
@@ -75,12 +75,21 @@
             android:textSize="19dp"
             app:backgroundTint="@color/white" />
 
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="167dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="recuperaContrasena"
+            android:text="Olvidé mi contraseña"
+            android:textColor="#FFFFFF" />
+
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="114dp"
-        android:layout_height="47dp"
+        android:layout_width="116dp"
+        android:layout_height="54dp"
         android:text="@string/Datos"
         android:textColor="#FFFFFF"
         android:textSize="14sp"

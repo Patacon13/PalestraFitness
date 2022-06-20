@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#201F1D"
+    android:id="@+id/container_main"
     android:theme="@style/MyTheme"
     tools:context=".ui.main.LoginActivity">
 
@@ -78,6 +79,16 @@
                 android:text="Aceptar"
                 android:textSize="19dp"
                 app:backgroundTint="@color/white" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="193dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="recuperaContrasena"
+                android:text="Olvidé mi contraseña"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>

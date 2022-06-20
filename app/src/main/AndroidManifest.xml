@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.utn.palestrafitness">
+    package="com.utn.palestrafitness" >
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PalestraFitness"
-        android:hardwareAccelerated="true">
+        android:theme="@style/Theme.PalestraFitness" >
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.rutina.RutinaActivity"
             android:exported="false" />
@@ -20,7 +23,7 @@
             android:theme="@style/Theme.PalestraFitness.NoActionBar" />
         <activity
             android:name=".ui.main.LoginActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
