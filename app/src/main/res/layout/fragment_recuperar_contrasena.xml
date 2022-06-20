@@ -4,34 +4,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    android:gravity="center|top"
     android:orientation="vertical"
     tools:context=".ui.main.RecuperarContrasena">
 
-    <TextView
-        android:id="@+id/textView2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:text="Ingrese su e-mail para generar una nueva contraseña"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Ingrese su e-mail para generar una nueva contraseña"
-        android:textColor="#FFFFFF" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/emailRecover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:textColor="#FFFFFF"
-        android:hint="E-mail"
-        android:shadowColor="@color/white"
-        android:textColorHighlight="@color/white"
-        android:backgroundTint="@color/white"
-        android:textColorHint="#FFFFFF" />
+        <EditText
+            android:id="@+id/emailRecover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:shadowColor="@color/white"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="#FFFFFF"
+            android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/enviarEmailButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enviar" />
+        <Button
+            android:id="@+id/enviarEmailButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
 </LinearLayout>

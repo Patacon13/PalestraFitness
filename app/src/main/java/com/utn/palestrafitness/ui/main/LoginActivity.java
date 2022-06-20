@@ -150,8 +150,7 @@ public class LoginActivity extends AppCompatActivity {
         Fragment fragment = new RecuperarContrasena();
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        transaction.replace(R.id.container_main, fragment).commit();
+        transaction.addToBackStack("tag").replace(R.id.container_main, fragment).commit();
     }
 
     @Override
