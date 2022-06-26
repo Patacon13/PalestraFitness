@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                                     alumno = Boolean.TRUE;
                                     Intent intent = new Intent(thisActivity, RutinaActivity.class);
                                     intent.putExtra("documento", datosAlumno.getDocumento());
+                                    intent.putExtra("currentUser", mAuth.getCurrentUser());
                                     startActivity(intent);
                                 }else{
                                     //Utility.showDialog(getActivity(), task);

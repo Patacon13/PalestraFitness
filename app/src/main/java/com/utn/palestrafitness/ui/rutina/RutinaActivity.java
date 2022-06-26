@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.EditTextPreference;
 import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
@@ -22,7 +23,9 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,6 +49,9 @@ public class RutinaActivity extends AppCompatActivity {
 
     Query busquedaRutina;
     Query busquedaUsuario;
+    FirebaseDatabase rootRef;
+
+    Menu menuDeEstaRutina;
 
     Usuario usuario;
     Rutina rutinaDelUsuario;
@@ -58,9 +64,8 @@ public class RutinaActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void llenarTabla (Rutina rutinaDelUsuario, ValueEventListener esteListener) {
-        busquedaRutina.removeEventListener(esteListener);
-
+    private void llenarTabla (Rutina rutinaDelUsuario) {
+        tabla.removeAllViews();
         for (int i = 0; i < 4; i++) {
 
             ArrayList<Ejercicio> ejerciciosDeLaSemana = rutinaDelUsuario.getEjercicios().get(Integer.valueOf(i));
@@ -79,7 +84,7 @@ public class RutinaActivity extends AppCompatActivity {
             TableRow filaEncabezado = new TableRow(this);
             filaEncabezado.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             filaEncabezado.setBackgroundResource(R.drawable.border);
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < rutinaDelUsuario.getCantidadDias(); j++) {
                 TextView peso = new TextView(this);
                 peso.setText("Peso");
                 TextView dia = new TextView(this);
@@ -250,7 +255,7 @@ public class RutinaActivity extends AppCompatActivity {
 
         String documento = extras.getString("documento");
 
-        FirebaseDatabase rootRef = FirebaseDatabase.getInstance();
+        rootRef = FirebaseDatabase.getInstance();
 
         busquedaRutina = rootRef.getReference().child("Usuario/Rutina/" + documento + "/");
 
@@ -267,12 +272,12 @@ public class RutinaActivity extends AppCompatActivity {
 
                     referenciaRutina = rootRef.getReference("Usuario/Rutina/" + documento + "/");
 
-                    llenarTabla(rutinaDelUsuario, this);
+                    llenarTabla(rutinaDelUsuario);
+                    if (usuario != null) editMenuOptions();
                     System.out.println("LA ENCONTREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
                 }
                 else {
-                    Rutina rutina = new Rutina(3);
-                    referenciaUsuario = rootRef.getReference("Usuario/Rutina/");
+                    Rutina rutina = new Rutina(3);;
                     System.out.println("gierogjeroigjer");
                     referenciaRutina.child(documento).setValue(rutina);
                 }
@@ -284,13 +289,15 @@ public class RutinaActivity extends AppCompatActivity {
             }
         };
 
-        busquedaRutina.addValueEventListener(listenerBusqueda);
+        busquedaRutina.addListenerForSingleValueEvent(listenerBusqueda);
 
         busquedaUsuario.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     usuario = snapshot.getValue(Usuario.class);
+                    referenciaUsuario = rootRef.getReference("Usuario/Alumno/" + usuario.getDocumento() + "/");
+                    if (rutinaDelUsuario != null) editMenuOptions();
                 }
             }
 
@@ -304,28 +311,69 @@ public class RutinaActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        SharedPreferences.OnSharedPreferenceChangeListener listener;
+    public boolean editMenuOptions () {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("dias", rutinaDelUsuario.getCantidadDias().toString());
+        editor.putString("documento", usuario.getDocumento());
+        editor.putString("nombre", usuario.getUsuario());
+        editor.putString("apellido", usuario.getApellido());
+        editor.putString("sexo", usuario.getSexo());
+        editor.commit();
+
+        return super.onPrepareOptionsMenu(menuDeEstaRutina);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menuDeEstaRutina = menu;
+        SharedPreferences.OnSharedPreferenceChangeListener listener;
+
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         listener = ((prefs1, key) -> {
             if (key.equals("dias")) {
                 System.out.println("Encontrado " + prefs1.getString("dias", "3"));
                 rutinaDelUsuario.setCantidadDias(Integer.valueOf(prefs1.getString("dias", "3") ));
                 referenciaRutina.setValue(rutinaDelUsuario);
+                llenarTabla(rutinaDelUsuario);
             } else if (key.equals("documento")) {
-                usuario.setDocumento(prefs1.getString("documento","4"));
-            } else if (key.equals("nombre")) {
+                System.out.println("EncontradoD " + prefs1.getString("documento", ""));
+                String nuevoDocumento = prefs1.getString("documento", "");
+                usuario.setDocumento(nuevoDocumento);
+                referenciaUsuario.removeValue();
+                referenciaRutina.removeValue();
 
+
+                DatabaseReference referenciaCrearAlumno = rootRef.getReference("Usuario/Alumno");
+                DatabaseReference referenciaCrearRutina = rootRef.getReference("Usuario/Rutina");
+
+                referenciaCrearAlumno.child(nuevoDocumento).setValue(usuario);
+                referenciaCrearRutina.child(nuevoDocumento).setValue(rutinaDelUsuario);
+
+                referenciaRutina = rootRef.getReference("Usuario/Rutina/" + nuevoDocumento + "/");
+                referenciaUsuario = rootRef.getReference("Usuario/Alumno/" + nuevoDocumento + "/");
+
+            } else if (key.equals("nombre")) {
+                usuario.setUsuario(prefs1.getString("nombre", ""));
+                referenciaUsuario.setValue(usuario);
             } else if (key.equals("apellido")) {
+                usuario.setUsuario(prefs1.getString("apellido", ""));
+                referenciaUsuario.setValue(usuario);
 
             } else if (key.equals("sexo")) {
+                usuario.setApellido(prefs1.getString("sexo", ""));
+                referenciaUsuario.setValue(usuario);
 
             } else if (key.equals("contrasena")) {
-
+                Bundle extras = getIntent().getExtras();
+                FirebaseUser user = (FirebaseUser) extras.get("currentUser");
+                user.updatePassword(prefs1.getString("contrasena", "")).addOnCompleteListener(completed ->
+                        Toast.makeText(this,"Contraseña modificada exitosamente",Toast.LENGTH_LONG).show());
             }
         });
 

@@ -32,13 +32,12 @@
 
         <ListPreference
             app:defaultValue="Masculino"
-            app:entries="@array/dias"
-            app:entryValues="@array/dias"
+            app:entries="@array/sexo"
+            app:entryValues="@array/sexo"
             app:key="sexo"
             app:title="@string/sexo"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            android:defaultValue="Default value"
             android:key="contrasena"
             android:selectAllOnFocus="true"
             android:singleLine="true"

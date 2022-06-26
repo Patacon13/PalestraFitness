@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,7 @@ public class PestañaEditarRutina extends Fragment {
         alumnoNoEncontrado.setVisibility(View.INVISIBLE);
     }
 
-    private void muestraErorr() {
+    private void muestraError() {
         alumnoNoEncontrado.setVisibility(View.VISIBLE);
     }
 
@@ -63,9 +62,10 @@ public class PestañaEditarRutina extends Fragment {
 
                     Intent intent = new Intent(getActivity(), RutinaActivity.class);
                     intent.putExtra("documento", datosAlumno.getDocumento());
+                    intent.putExtra("esProfesor", true);
                     startActivity(intent);
                 }
-                else muestraErorr();
+                else muestraError();
             }
 
             @Override

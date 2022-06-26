@@ -12,9 +12,4 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
     }
-
-    public void openDialog(View view) {
-        MultiFieldDialog mf = new MultiFieldDialog();
-        mf.show(getSupportFragmentManager(), "Cambiar contraseña");
-    }
 }
