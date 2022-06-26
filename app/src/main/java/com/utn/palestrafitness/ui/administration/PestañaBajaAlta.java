@@ -91,16 +91,16 @@ public class PestañaBajaAlta extends Fragment {
 
                         TableRow fila = new TableRow(thisView.getContext());
                         TextView nombre = new TextView(thisView.getContext());
-                        nombre.setTextSize(21);
+                        nombre.setTextSize(16);
                         nombre.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                                 TableRow.LayoutParams.MATCH_PARENT));
                         nombre.setGravity(Gravity.CENTER);
                         TextView apellido = new TextView(thisView.getContext());
-                        apellido.setTextSize(21);
+                        apellido.setTextSize(16);
                         apellido.setLayoutParams(param);
                         apellido.setGravity(Gravity.CENTER);
                         TextView documento = new TextView(thisView.getContext());
-                        documento.setTextSize(21);
+                        documento.setTextSize(16);
                         documento.setLayoutParams(param);
                         documento.setGravity(Gravity.CENTER);
                         TextView estado = new TextView(thisView.getContext());
@@ -164,16 +164,16 @@ public class PestañaBajaAlta extends Fragment {
                             );
                             TableRow fila = new TableRow(thisView.getContext());
                             TextView nombre = new TextView(thisView.getContext());
-                            nombre.setTextSize(21);
+                            nombre.setTextSize(16);
                             nombre.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                                     TableRow.LayoutParams.MATCH_PARENT));
                             nombre.setGravity(Gravity.CENTER);
                             TextView apellido = new TextView(thisView.getContext());
-                            apellido.setTextSize(21);
+                            apellido.setTextSize(16);
                             apellido.setLayoutParams(param);
                             apellido.setGravity(Gravity.CENTER);
                             TextView documento = new TextView(thisView.getContext());
-                            documento.setTextSize(21);
+                            documento.setTextSize(16);
                             documento.setLayoutParams(param);
                             documento.setGravity(Gravity.CENTER);
                             TextView estado = new TextView(thisView.getContext());
