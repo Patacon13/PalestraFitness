@@ -16,4 +16,6 @@ public class ConfiguracionFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.root_preferences);
     }
+
+
 }

@@ -2,13 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#201F1D"
     android:theme="@style/MyTheme"
-    android:id="@+id/container_main"
-    tools:context=".ui.main.LoginActivity"
-    >
+    tools:context=".ui.main.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -82,20 +81,20 @@
             android:onClick="recuperaContrasena"
             android:text="Olvidé mi contraseña"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="93dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="244dp"
+        android:layout_width="match_parent"
+        android:layout_height="17dp"
+        android:gravity="center"
         android:text="@string/Datos"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

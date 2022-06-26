@@ -1,35 +1,47 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory app:title="@string/rutina">
 
-        <EditTextPreference
-            app:key="signature"
+        <ListPreference
+            app:defaultValue="3"
+            app:entries="@array/dias"
+            app:entryValues="@array/dias"
+            app:key="dias"
             app:title="@string/cantidadDias"
             app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/datos_personales">
+
+
+        <EditTextPreference
+            app:key="documento"
+            app:title="@string/documento"
             app:useSimpleSummaryProvider="true" />
 
+        <EditTextPreference
+            app:key="nombre"
+            app:title="@string/nombre"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="apellido"
+            app:title="@string/apellido"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="Masculino"
+            app:entries="@array/dias"
+            app:entryValues="@array/dias"
+            app:key="sexo"
+            app:title="@string/sexo"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="Default value"
+            android:key="contrasena"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/contraseña" />
     </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
-
-    </PreferenceCategory>
-
 </PreferenceScreen>

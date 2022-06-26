@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -33,6 +35,7 @@ import com.utn.palestrafitness.SettingsActivity;
 import com.utn.palestrafitness.lib.Alumno;
 import com.utn.palestrafitness.lib.Ejercicio;
 import com.utn.palestrafitness.lib.Rutina;
+import com.utn.palestrafitness.lib.Usuario;
 import com.utn.palestrafitness.ui.administration.AdministrationActivity;
 
 import java.util.ArrayList;
@@ -42,13 +45,20 @@ import java.util.Map;
 public class RutinaActivity extends AppCompatActivity {
 
     Query busquedaRutina;
+    Query busquedaUsuario;
+
+    Usuario usuario;
+    Rutina rutinaDelUsuario;
+
+    DatabaseReference referenciaRutina;
+    DatabaseReference referenciaUsuario;
 
     public void abreConfiguracion() {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
-    private void llenarTabla (Rutina rutinaDelUsuario, ValueEventListener esteListener, DatabaseReference reference) {
+    private void llenarTabla (Rutina rutinaDelUsuario, ValueEventListener esteListener) {
         busquedaRutina.removeEventListener(esteListener);
 
         for (int i = 0; i < 4; i++) {
@@ -140,7 +150,7 @@ public class RutinaActivity extends AppCompatActivity {
                             @Override
                             public void afterTextChanged(Editable editable) {
                                 ejercicioDeEsteDia.setDia(editable.toString());
-                                reference.setValue(rutinaDelUsuario);
+                                referenciaRutina.setValue(rutinaDelUsuario);
                             }
                         });
                     }
@@ -166,7 +176,7 @@ public class RutinaActivity extends AppCompatActivity {
                             @Override
                             public void afterTextChanged(Editable editable) {
                                 ejercicioDeEsteDia.setCantSeries(editable.toString());
-                                reference.setValue(rutinaDelUsuario);
+                                referenciaRutina.setValue(rutinaDelUsuario);
                             }
                         });
 
@@ -193,7 +203,7 @@ public class RutinaActivity extends AppCompatActivity {
                             @Override
                             public void afterTextChanged(Editable editable) {
                                 ejercicioDeEsteDia.setCantRepeticiones(editable.toString());
-                                reference.setValue(rutinaDelUsuario);
+                                referenciaRutina.setValue(rutinaDelUsuario);
                             }
                         });
 
@@ -219,7 +229,7 @@ public class RutinaActivity extends AppCompatActivity {
                             @Override
                             public void afterTextChanged(Editable editable) {
                                 ejercicioDeEsteDia.setPeso(editable.toString());
-                                reference.setValue(rutinaDelUsuario);
+                                referenciaRutina.setValue(rutinaDelUsuario);
                             }
                         });
                     }
@@ -244,25 +254,27 @@ public class RutinaActivity extends AppCompatActivity {
 
         busquedaRutina = rootRef.getReference().child("Usuario/Rutina/" + documento + "/");
 
+        busquedaUsuario = rootRef.getReference().child("Usuario/Alumno/" + documento + "/");
+
         ValueEventListener listenerBusqueda = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
 
-                    Rutina rutinaDelUsuario = snapshot.getValue(Rutina.class);
+                    rutinaDelUsuario = snapshot.getValue(Rutina.class);
 
 
-                    DatabaseReference reference = rootRef.getReference("Usuario/Rutina/" + documento + "/");
+                    referenciaRutina = rootRef.getReference("Usuario/Rutina/" + documento + "/");
 
-                    llenarTabla(rutinaDelUsuario, this, reference);
+                    llenarTabla(rutinaDelUsuario, this);
                     System.out.println("LA ENCONTREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
                 }
                 else {
                     Rutina rutina = new Rutina(3);
-                    DatabaseReference reference = rootRef.getReference("Usuario/Rutina/");
+                    referenciaUsuario = rootRef.getReference("Usuario/Rutina/");
                     System.out.println("gierogjeroigjer");
-                    reference.child(documento).setValue(rutina);
+                    referenciaRutina.child(documento).setValue(rutina);
                 }
             }
 
@@ -274,13 +286,53 @@ public class RutinaActivity extends AppCompatActivity {
 
         busquedaRutina.addValueEventListener(listenerBusqueda);
 
+        busquedaUsuario.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    usuario = snapshot.getValue(Usuario.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         tabla = findViewById(R.id.tablaEjercicios);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_rutina,menu);
+        SharedPreferences.OnSharedPreferenceChangeListener listener;
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+
+        listener = ((prefs1, key) -> {
+            if (key.equals("dias")) {
+                System.out.println("Encontrado " + prefs1.getString("dias", "3"));
+                rutinaDelUsuario.setCantidadDias(Integer.valueOf(prefs1.getString("dias", "3") ));
+                referenciaRutina.setValue(rutinaDelUsuario);
+            } else if (key.equals("documento")) {
+                usuario.setDocumento(prefs1.getString("documento","4"));
+            } else if (key.equals("nombre")) {
+
+            } else if (key.equals("apellido")) {
+
+            } else if (key.equals("sexo")) {
+
+            } else if (key.equals("contrasena")) {
+
+            }
+        });
+
+        prefs.registerOnSharedPreferenceChangeListener(listener);
+
+        getMenuInflater().inflate(R.menu.menu_rutina, menu);
+
 
         return true;
     }

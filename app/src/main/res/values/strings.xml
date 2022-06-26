@@ -13,7 +13,7 @@
     <string name="tab_text_3">Editar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Datos">Desarrollado por \nIrina Argañaras \nTomás Assenza</string>
+    <string name="Datos">Desarrollado por Irina Argañaras y Tomás Assenza</string>
     <string name="title_activity_rutina">Rutina</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -115,10 +115,15 @@
     <string name="action_settings">Configurar rutina</string>
     <!-- Preference Titles -->
     <string name="rutina">Rutina</string>
-    <string name="sync_header">Sync</string>
+    <string name="datos_personales">Datos personales</string>
 
     <!-- Messages Preferences -->
     <string name="cantidadDias">Cantidad de días por semana</string>
+    <string name="documento">Documento</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="sexo">Sexo</string>
     <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->

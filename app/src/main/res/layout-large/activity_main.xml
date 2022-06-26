@@ -43,7 +43,7 @@
             android:layout_height="90dp"
             android:backgroundTint="@color/white"
             android:ems="10"
-            android:hint="DocumentoA"
+            android:hint="Documento"
             android:inputType="numberSigned"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -90,18 +90,20 @@
             android:gravity="center"
             android:text="Olvidé mi contraseña"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="136dp"
-        android:layout_height="65dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/Datos"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
