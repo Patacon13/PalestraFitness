@@ -107,7 +107,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="Nombre"
-                            android:textSize="24sp" />
+                            android:textSize="20sp" />
 
                         <TextView
 
@@ -117,7 +117,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Apellido"
-                            android:textSize="24sp" />
+                            android:textSize="20sp" />
 
                         <TextView
 
@@ -128,7 +128,7 @@
                             android:gravity="center"
 
                             android:text="DNI"
-                            android:textSize="24sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/textView26"
@@ -138,7 +138,7 @@
                             android:gravity="center"
 
                             android:text="Estado"
-                            android:textSize="24sp" />
+                            android:textSize="20sp" />
                     </TableRow>
                 </TableLayout>
             </ScrollView>
