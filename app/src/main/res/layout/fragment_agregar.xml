@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="1dp"
                     android:text="Documento"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/documento"
@@ -60,7 +60,7 @@
                     android:layout_column="0"
                     android:layout_marginRight="1dp"
                     android:text="Nombre"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/nombre"
@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="1dp"
                     android:text="Apellido"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/apellido"
@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="1dp"
                     android:text="Sexo"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <Spinner
                     android:id="@+id/genero"
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="1dp"
                     android:text="Telefono"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/telefono"
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="1dp"
                     android:text="Profesor"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <CheckBox
                     android:id="@+id/profesor"
@@ -167,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="1dp"
                     android:text="E-mail"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/email"
@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="1dp"
                     android:text="Contraseña"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/contrasena"
@@ -223,8 +223,8 @@
 
                 <Button
                     android:id="@+id/botonAgregar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
                     android:layout_span="2"
                     android:text="Agregar" />
 

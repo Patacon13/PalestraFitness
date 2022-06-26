@@ -23,11 +23,11 @@
 
     <Button
         android:id="@+id/botonEditarRutina"
-        android:layout_width="175dp"
-        android:layout_height="74dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
         android:layout_marginTop="84dp"
         android:text="Aceptar"
-        android:textSize="24sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/documentoEditar"
         app:layout_constraintStart_toStartOf="@+id/documentoEditar"
         app:layout_constraintTop_toBottomOf="@+id/documentoEditar" />
