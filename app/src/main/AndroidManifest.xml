@@ -14,6 +14,9 @@
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
+            android:name=".SettingsActivityProfesor"
+            android:exported="false" />
+        <activity
             android:name=".ui.rutina.RutinaActivity"
             android:exported="false" />
         <activity

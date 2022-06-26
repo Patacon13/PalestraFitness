@@ -35,6 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.utn.palestrafitness.ConfiguracionFragment;
 import com.utn.palestrafitness.R;
 import com.utn.palestrafitness.SettingsActivity;
+import com.utn.palestrafitness.SettingsActivityProfesor;
 import com.utn.palestrafitness.lib.Alumno;
 import com.utn.palestrafitness.lib.Ejercicio;
 import com.utn.palestrafitness.lib.Rutina;
@@ -60,7 +61,9 @@ public class RutinaActivity extends AppCompatActivity {
     DatabaseReference referenciaUsuario;
 
     public void abreConfiguracion() {
-        Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent;
+        if (getIntent().getExtras().get("esProfesor") == null) intent = new Intent(this, SettingsActivity.class);
+        else intent = new Intent(this, SettingsActivityProfesor.class);
         startActivity(intent);
     }
 
