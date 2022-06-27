@@ -82,6 +82,7 @@ public class RutinaActivity extends AppCompatActivity {
             //Agrego la semana
             TextView semana = new TextView(this);
             semana.setTextSize(21);
+            semana.setMaxLines(1);
             semana.setText("Semana " + (i + 1));
             semana.setGravity(Gravity.CENTER);
             semana.setTextColor(Color.BLUE);
@@ -95,13 +96,16 @@ public class RutinaActivity extends AppCompatActivity {
             for (int j = 0; j < rutinaDelUsuario.getCantidadDias(); j++) {
                 TextView peso = new TextView(this);
                 peso.setText("Peso");
+                peso.setMaxLines(1);
                 TextView dia = new TextView(this);
                 dia.setText("Dia " + (j + 1));
+                dia.setMaxLines(1);
                 TextView series = new TextView(this);
                 series.setText("Series");
+                series.setMaxLines(1);
                 TextView repeticiones = new TextView(this);
                 repeticiones.setText("Repeticiones");
-
+                repeticiones.setMaxLines(1);
                 dia.setTextSize(21);
                 dia.setTextColor(Color.CYAN);
                 peso.setTextSize(21);
@@ -145,7 +149,9 @@ public class RutinaActivity extends AppCompatActivity {
 
                         EditText ejercicio = new EditText(this);
                         ejercicio.setText(ejercicioDeEsteDia.getDia());
+                        ejercicio.setMaxLines(1);
                         ejercicio.setTextColor(Color.BLACK);
+                        ejercicio.setInputType(InputType.TYPE_CLASS_TEXT);
                         ejercicio.setBackgroundResource(R.drawable.border);
                         filaEjercicio.addView(ejercicio);
 
@@ -172,6 +178,8 @@ public class RutinaActivity extends AppCompatActivity {
                         EditText series = new EditText(this);
                         series.setText(ejercicioDeEsteDia.getCantSeries());
                         series.setTextColor(Color.BLACK);
+                        series.setInputType(InputType.TYPE_CLASS_TEXT);
+                        series.setMaxLines(1);
                         series.setBackgroundResource(R.drawable.border);
                         filaEjercicio.addView(series);
 
@@ -197,6 +205,8 @@ public class RutinaActivity extends AppCompatActivity {
                     else if (k % 4 == 2) { //repeticion
 
                         EditText repeticiones = new EditText(this);
+                        repeticiones.setMaxLines(1);
+                        repeticiones.setInputType(InputType.TYPE_CLASS_TEXT);
                         repeticiones.setText(ejercicioDeEsteDia.getCantRepeticiones());
                         repeticiones.setTextColor(Color.BLACK);
                         repeticiones.setBackgroundResource(R.drawable.border);
@@ -224,8 +234,10 @@ public class RutinaActivity extends AppCompatActivity {
                     else if (k % 4 == 3) { //peso
                         EditText peso = new EditText(this);
                         peso.setText(ejercicioDeEsteDia.getPeso());
+                        peso.setInputType(InputType.TYPE_CLASS_TEXT);
                         peso.setTextColor(Color.BLACK);
                         peso.setBackgroundResource(R.drawable.border);
+                        peso.setMaxLines(1);
                         filaEjercicio.addView(peso);
 
                         peso.addTextChangedListener(new TextWatcher() {
@@ -285,9 +297,12 @@ public class RutinaActivity extends AppCompatActivity {
                     System.out.println("LA ENCONTREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
                 }
                 else {
-                    Rutina rutina = new Rutina(3);;
+                    Rutina rutina = new Rutina(3);
                     System.out.println("gierogjeroigjer");
+                    referenciaRutina = rootRef.getReference("Usuario/Rutina/");
                     referenciaRutina.child(documento).setValue(rutina);
+                    rutinaDelUsuario = rutina;
+                    llenarTabla(rutina);
                 }
             }
 

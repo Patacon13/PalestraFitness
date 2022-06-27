@@ -171,27 +171,6 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Contraseña"
-                        android:textSize="24sp" />
-
-                    <EditText
-                        android:id="@+id/contrasena"
-                        android:layout_width="150dp"
-                        android:layout_height="50dp"
-                        android:ems="10"
-                        android:inputType="textPassword"
-                        tools:ignore="TouchTargetSizeCheck" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
                         android:id="@+id/errorAgregar"
                         android:layout_width="277dp"
                         android:layout_height="30dp"

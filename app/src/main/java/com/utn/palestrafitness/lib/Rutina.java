@@ -21,10 +21,6 @@ public class Rutina {
         return ejercicios;
     }
 
-    public void setEjercicios(ArrayList<ArrayList<Ejercicio>> ejercicios) {
-        this.ejercicios = ejercicios;
-    }
-
     public Integer getCantidadDias() {
         return cantidadDias;
     }
@@ -40,7 +36,7 @@ public class Rutina {
     public Rutina (int cantidadDias) {
         this.cantidadDias = cantidadDias;
         ejercicios = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < cantidadDias + 1; i++) {
             ejercicios.add(new ArrayList<>());
             ejercicios.get(i).add(new Ejercicio());
         }

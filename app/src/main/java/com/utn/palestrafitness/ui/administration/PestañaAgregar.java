@@ -64,7 +64,6 @@ public class PestañaAgregar extends Fragment {
     private Usuario auxUsuarioAgregar;
     private String documentoAgregar;
     private String emailAgregar;
-    private String passwordAgregar;
 
     private int defaultTextColor;
 
@@ -84,10 +83,9 @@ public class PestañaAgregar extends Fragment {
         textoDocumento.setBackgroundColor(defaultTextColor);
         textoTelefono.setBackgroundColor(defaultTextColor);
         textoEmail.setBackgroundColor(defaultTextColor);
-        textoPass.setBackgroundColor(defaultTextColor);
     }
 
-    private boolean pintaErrores(String user, String apellido, String documento, String telefono, String email, String sexo, String password) {
+    private boolean pintaErrores(String user, String apellido, String documento, String telefono, String email) {
         Pattern pattern=Patterns.EMAIL_ADDRESS;
 
         Boolean hayErrores = false;
@@ -111,10 +109,6 @@ public class PestañaAgregar extends Fragment {
             textoEmail.setBackgroundColor(Color.RED);
             hayErrores = true;
         }
-        if (password.isEmpty()) {
-            textoPass.setBackgroundColor(Color.RED);
-            hayErrores = true;
-        }
         return hayErrores;
     }
 
@@ -133,12 +127,11 @@ public class PestañaAgregar extends Fragment {
         String telefono = textoTelefono.getText().toString();
         String email = textoEmail.getText().toString();
         String sexo = (String) sexoSpinner.getSelectedItem();
-        String password = textoPass.getText().toString();
         Boolean esProfesor = profesor.isChecked();
 
 
 
-        if (pintaErrores(user, apellido, documento, telefono, email, sexo, password)) {
+        if (pintaErrores(user, apellido, documento, telefono, email)) {
             errorAgregar.setVisibility(View.VISIBLE);
             return;
         }
@@ -146,7 +139,7 @@ public class PestañaAgregar extends Fragment {
         }
 
         if (esProfesor) {
-            Profesor profesor = new Profesor(user, apellido, documento, telefono, email, sexo, password);
+            Profesor profesor = new Profesor(user, apellido, documento, telefono, email, sexo);
             reference = rootNode.getReference("Usuario/Profesor");
             //
             reference.child(documento).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -154,7 +147,7 @@ public class PestañaAgregar extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (!snapshot.exists()) {
                         reference.child(documento).setValue(profesor);
-                        createUser(email, password);
+                        createUser(email, documento);
                         Toast.makeText(getContext(),"El usuario ha sido agregado con éxito",Toast.LENGTH_LONG).show();
                     }
                     else {
@@ -162,7 +155,6 @@ public class PestañaAgregar extends Fragment {
                         documentoAgregar = documento;
                         auxUsuarioAgregar = profesor;
                         emailAgregar = email;
-                        passwordAgregar = password;
                         showDialog();
                     }
                 }
@@ -182,7 +174,7 @@ public class PestañaAgregar extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (!snapshot.exists()) {
                         reference.child(documento).setValue(alumno);
-                        createUser(email, password);
+                        createUser(email, documento);
                         Toast.makeText(getContext(),"El usuario ha sido agregado con éxito",Toast.LENGTH_LONG).show();
                     }
                     else {
@@ -190,7 +182,6 @@ public class PestañaAgregar extends Fragment {
                         documentoAgregar = documento;
                         auxUsuarioAgregar = alumno;
                         emailAgregar = email;
-                        passwordAgregar = password;
                         showDialog();
                     }
                 }
@@ -217,7 +208,7 @@ public class PestañaAgregar extends Fragment {
             public void onDismiss(DialogInterface dialogInterface) {
                 if (dialogo.getEstado()) {
                     reference.child(documentoAgregar).setValue(auxUsuarioAgregar);
-                    createUser(emailAgregar, passwordAgregar);
+                    createUser(emailAgregar, documentoAgregar);
 
                     Toast.makeText(getContext(),"El usuario ha sido agregado con éxito",Toast.LENGTH_LONG).show();
                 }
@@ -276,7 +267,6 @@ public class PestañaAgregar extends Fragment {
         textoEmail = view.findViewById(R.id.email);
         sexoSpinner = view.findViewById(R.id.genero);
         profesor = view.findViewById(R.id.profesor);
-        textoPass = view.findViewById(R.id.contrasena);
 
 
 

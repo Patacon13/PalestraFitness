@@ -127,11 +127,16 @@ public class LoginActivity extends AppCompatActivity {
                     mAuth.signInWithEmailAndPassword(datosAlumno.getEmail(), contrasena)
                             .addOnCompleteListener(task -> {
                                 if (task.isSuccessful()){
-                                    alumno = Boolean.TRUE;
-                                    Intent intent = new Intent(thisActivity, RutinaActivity.class);
-                                    intent.putExtra("documento", datosAlumno.getDocumento());
-                                    intent.putExtra("currentUser", mAuth.getCurrentUser());
-                                    startActivity(intent);
+                                    if (datosAlumno.getEsAlumnoActivo()) {
+                                        alumno = Boolean.TRUE;
+                                        Intent intent = new Intent(thisActivity, RutinaActivity.class);
+                                        intent.putExtra("documento", datosAlumno.getDocumento());
+                                        intent.putExtra("currentUser", mAuth.getCurrentUser());
+                                        startActivity(intent);
+                                    }
+                                    else {
+                                        noEncontrado();
+                                    }
                                 }else{
                                     //Utility.showDialog(getActivity(), task);
                                     buscarProfesor(thisActivity, rootRef, documento, contrasena);
