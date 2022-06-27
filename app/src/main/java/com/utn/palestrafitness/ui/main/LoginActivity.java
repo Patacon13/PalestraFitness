@@ -76,16 +76,19 @@ public class LoginActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     System.out.println(snapshot.getValue(Profesor.class));
                     datosProfesor = snapshot.getValue(Profesor.class);
+                    mAuth.signInWithEmailAndPassword(datosProfesor.getEmail(), contrasena)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()){
+                                    profesor = Boolean.TRUE ;
+                                    textoError.setVisibility(View.INVISIBLE);
+                                    Intent intent = new Intent(thisActivity, AdministrationActivity.class);
+                                    startActivity(intent);
+                                }else{
+                                    //Utility.showDialog(getActivity(), task);
+                                    noEncontrado();
+                                }
 
-                    if (datosProfesor.getContrasena().equals(contrasena)) {
-                        profesor = Boolean.TRUE ;
-                        textoError.setVisibility(View.INVISIBLE);
-                        Intent intent = new Intent(thisActivity, AdministrationActivity.class);
-                        startActivity(intent);
-                    }
-                    else {
-                        noEncontrado();
-                    }
+                            });
                 }
                 else {
                     noEncontrado();
@@ -156,7 +159,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);

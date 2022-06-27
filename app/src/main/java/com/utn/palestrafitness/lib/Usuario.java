@@ -7,21 +7,19 @@ public class Usuario {
     private String telefono;
     private String email;
     private String sexo;
-    private String contrasena;
     private Boolean esAlumnoActivo;
 
     public Usuario() {
 
     }
 
-    public Usuario(String usuario, String apellido, String documento, String telefono, String email, String sexo, String contrasena) {
+    public Usuario(String usuario, String apellido, String documento, String telefono, String email, String sexo) {
         this.usuario = usuario;
         this.apellido = apellido;
         this.documento = documento;
         this.telefono = telefono;
         this.email = email;
         this.sexo = sexo;
-        this.contrasena = contrasena;
         this.esAlumnoActivo = true;
     }
 
@@ -71,14 +69,6 @@ public class Usuario {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
     }
 
     public Boolean getEsAlumnoActivo() {

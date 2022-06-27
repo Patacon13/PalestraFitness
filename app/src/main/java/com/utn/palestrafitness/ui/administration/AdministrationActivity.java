@@ -8,9 +8,10 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.utn.palestrafitness.databinding.ActivityAdministrationBinding;
+import com.utn.palestrafitness.lib.DialogDNI;
 import com.utn.palestrafitness.ui.administration.SectionsPagerAdapter;
 
-public class AdministrationActivity extends AppCompatActivity {
+public class AdministrationActivity extends AppCompatActivity implements DialogDNI.DialogListener {
 
     private ActivityAdministrationBinding binding;
 
@@ -26,5 +27,10 @@ public class AdministrationActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void getsState(boolean state) {
+
     }
 }

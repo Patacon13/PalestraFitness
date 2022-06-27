@@ -33,12 +33,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 import com.utn.palestrafitness.ConfiguracionFragment;
 import com.utn.palestrafitness.R;
 import com.utn.palestrafitness.SettingsActivity;
 import com.utn.palestrafitness.SettingsActivityProfesor;
 import com.utn.palestrafitness.lib.Alumno;
+import com.utn.palestrafitness.lib.DialogDNI;
 import com.utn.palestrafitness.lib.Ejercicio;
 import com.utn.palestrafitness.lib.Rutina;
 import com.utn.palestrafitness.lib.Usuario;
@@ -335,7 +335,7 @@ public class RutinaActivity extends AppCompatActivity {
 
         listener = (new SharedPreferences.OnSharedPreferenceChangeListener() {
 
-            
+
 
             @Override public void onSharedPreferenceChanged(SharedPreferences prefs1, String key) {
 

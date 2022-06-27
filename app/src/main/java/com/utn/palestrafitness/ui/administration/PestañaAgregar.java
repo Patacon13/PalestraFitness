@@ -1,9 +1,15 @@
 package com.utn.palestrafitness.ui.administration;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -18,11 +24,16 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.utn.palestrafitness.lib.Alumno;
+import com.utn.palestrafitness.lib.DialogDNI;
 import com.utn.palestrafitness.lib.Profesor;
 import com.utn.palestrafitness.R;
+import com.utn.palestrafitness.lib.Usuario;
 
 import java.util.regex.Pattern;
 
@@ -49,6 +60,12 @@ public class PestañaAgregar extends Fragment {
     private TextView textoPass;
     private TextView errorAgregar;
 
+    private boolean agregarEsAlumno;
+    private Usuario auxUsuarioAgregar;
+    private String documentoAgregar;
+    private String emailAgregar;
+    private String passwordAgregar;
+
     private int defaultTextColor;
 
     public PestañaAgregar() {
@@ -56,6 +73,10 @@ public class PestañaAgregar extends Fragment {
     }
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+
+    private String generateRandomPass () {
+        return "123";
+    }
 
     private void pintaDefault() {
         textoUsuario.setBackgroundColor(defaultTextColor);
@@ -78,7 +99,7 @@ public class PestañaAgregar extends Fragment {
             textoApellido.setBackgroundColor(Color.RED);
             hayErrores = true;
         }
-        if (documento.isEmpty() || documento.length()==8) {
+        if (documento.isEmpty() || documento.length()!=8) {
             textoDocumento.setBackgroundColor(Color.RED);
             hayErrores = true;
         }
@@ -122,31 +143,104 @@ public class PestañaAgregar extends Fragment {
             return;
         }
         else{
-            Toast.makeText(getContext(),"El usuario ha sido agregado con éxito",Toast.LENGTH_LONG).show();
         }
 
         if (esProfesor) {
             Profesor profesor = new Profesor(user, apellido, documento, telefono, email, sexo, password);
             reference = rootNode.getReference("Usuario/Profesor");
-            reference.child(documento).setValue(profesor);
+            //
+            reference.child(documento).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (!snapshot.exists()) {
+                        reference.child(documento).setValue(profesor);
+                        createUser(email, password);
+                        Toast.makeText(getContext(),"El usuario ha sido agregado con éxito",Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        agregarEsAlumno = false;
+                        documentoAgregar = documento;
+                        auxUsuarioAgregar = profesor;
+                        emailAgregar = email;
+                        passwordAgregar = password;
+                        showDialog();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
         else {
-            Alumno alumno = new Alumno(user, apellido, documento, telefono, email, sexo, password);
+            Alumno alumno = new Alumno(user, apellido, documento, telefono, email, sexo);
             reference = rootNode.getReference("Usuario/Alumno");
-            reference.child(documento).setValue(alumno);
+            //reference.child(documento).setValue(alumno);
+            reference.child(documento).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (!snapshot.exists()) {
+                        reference.child(documento).setValue(alumno);
+                        createUser(email, password);
+                        Toast.makeText(getContext(),"El usuario ha sido agregado con éxito",Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        agregarEsAlumno = true;
+                        documentoAgregar = documento;
+                        auxUsuarioAgregar = alumno;
+                        emailAgregar = email;
+                        passwordAgregar = password;
+                        showDialog();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-        .addOnCompleteListener(task -> {
-            if (task.isSuccessful()){
-                //mListener.onSignUpDone();
-                System.out.println("anduvo");
-            }else{
-                //Utility.showDialog(getActivity(), task);
-                System.out.println("no");
-            }
 
+
+    }
+
+    private void showDialog() {
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        DialogDNI dialogo = new DialogDNI();
+        dialogo.show(getActivity().getSupportFragmentManager(), "DNI duplicado");
+
+        fm.executePendingTransactions();
+        dialogo.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                if (dialogo.getEstado()) {
+                    reference.child(documentoAgregar).setValue(auxUsuarioAgregar);
+                    createUser(emailAgregar, passwordAgregar);
+
+                    Toast.makeText(getContext(),"El usuario ha sido agregado con éxito",Toast.LENGTH_LONG).show();
+                }
+            }
         });
+
+    }
+
+
+
+    private void createUser(String email, String password) {
+        System.out.println(email + " " + password);
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        //mListener.onSignUpDone();
+                        System.out.println("anduvo");
+                    }else{
+                        //Utility.showDialog(getActivity(), task);
+                        System.out.println("no");
+                    }
+
+                });
     }
 
 
