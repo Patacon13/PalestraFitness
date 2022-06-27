@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -32,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 import com.utn.palestrafitness.ConfiguracionFragment;
 import com.utn.palestrafitness.R;
 import com.utn.palestrafitness.SettingsActivity;
@@ -52,6 +54,8 @@ public class RutinaActivity extends AppCompatActivity {
     Query busquedaUsuario;
     FirebaseDatabase rootRef;
 
+    private SharedPreferences.OnSharedPreferenceChangeListener listener;
+
     Menu menuDeEstaRutina;
 
     Usuario usuario;
@@ -64,6 +68,7 @@ public class RutinaActivity extends AppCompatActivity {
         Intent intent;
         if (getIntent().getExtras().get("esProfesor") == null) intent = new Intent(this, SettingsActivity.class);
         else intent = new Intent(this, SettingsActivityProfesor.class);
+
         startActivity(intent);
     }
 
@@ -316,6 +321,7 @@ public class RutinaActivity extends AppCompatActivity {
 
     public boolean editMenuOptions () {
 
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         SharedPreferences.Editor editor = prefs.edit();
@@ -327,19 +333,15 @@ public class RutinaActivity extends AppCompatActivity {
         editor.putString("sexo", usuario.getSexo());
         editor.commit();
 
-        return super.onPrepareOptionsMenu(menuDeEstaRutina);
-    }
+        listener = (new SharedPreferences.OnSharedPreferenceChangeListener() {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menuDeEstaRutina = menu;
-        SharedPreferences.OnSharedPreferenceChangeListener listener;
+            
 
+            @Override public void onSharedPreferenceChanged(SharedPreferences prefs1, String key) {
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        listener = ((prefs1, key) -> {
+                System.out.println("Me llamaron");
             if (key.equals("dias")) {
+                System.out.println("Estoy funcionandooooo");
                 System.out.println("Encontrado " + prefs1.getString("dias", "3"));
                 rutinaDelUsuario.setCantidadDias(Integer.valueOf(prefs1.getString("dias", "3") ));
                 referenciaRutina.setValue(rutinaDelUsuario);
@@ -376,11 +378,17 @@ public class RutinaActivity extends AppCompatActivity {
                 Bundle extras = getIntent().getExtras();
                 FirebaseUser user = (FirebaseUser) extras.get("currentUser");
                 user.updatePassword(prefs1.getString("contrasena", "")).addOnCompleteListener(completed ->
-                        Toast.makeText(this,"Contraseña modificada exitosamente",Toast.LENGTH_LONG).show());
+                        System.out.println("hi"));//Toast.makeText(this,"Contraseña modificada exitosamente",Toast.LENGTH_LONG).show());
             }
-        });
+        }});
 
         prefs.registerOnSharedPreferenceChangeListener(listener);
+
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_rutina, menu);
 
