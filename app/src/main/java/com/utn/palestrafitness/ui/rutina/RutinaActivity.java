@@ -382,11 +382,11 @@ public class RutinaActivity extends AppCompatActivity {
                 usuario.setUsuario(prefs1.getString("nombre", ""));
                 referenciaUsuario.setValue(usuario);
             } else if (key.equals("apellido")) {
-                usuario.setUsuario(prefs1.getString("apellido", ""));
+                usuario.setApellido(prefs1.getString("apellido", ""));
                 referenciaUsuario.setValue(usuario);
 
             } else if (key.equals("sexo")) {
-                usuario.setApellido(prefs1.getString("sexo", ""));
+                usuario.setSexo(prefs1.getString("sexo", ""));
                 referenciaUsuario.setValue(usuario);
 
             } else if (key.equals("contrasena")) {

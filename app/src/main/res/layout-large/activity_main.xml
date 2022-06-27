@@ -31,7 +31,6 @@
         android:layout_width="match_parent"
         android:layout_height="340dp"
         android:gravity="center"
-        android:onClick="recuperaContrasena"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +88,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Olvidé mi contraseña"
+            android:onClick="recuperaContrasena"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
