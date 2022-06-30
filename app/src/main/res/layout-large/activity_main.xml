@@ -2,17 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#201F1D"
     android:theme="@style/MyTheme"
-    android:id="@+id/container_main"
     tools:context=".ui.main.LoginActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,78 +21,84 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="258dp"
-            android:layout_height="255dp"
+            android:layout_height="213dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/logo" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="340dp"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <EditText
-            android:id="@+id/textoDocumento"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="Documento"
-            android:inputType="numberSigned"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/textoContrasena"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:backgroundTint="@color/white"
-            android:ems="10"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/textoErrorLogin"
-            android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:gravity="center"
-            android:text="El usuario o contraseña es incorrecto"
-            android:textColor="#FF0000"
-            android:textSize="23sp"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/botonAceptar"
-            android:layout_width="163dp"
-            android:layout_height="76dp"
-            android:gravity="center"
-            android:onClick="aceptaIngreso"
-            android:text="Aceptar"
-            android:textSize="19dp"
-            app:backgroundTint="@color/white" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="177dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Olvidé mi contraseña"
-            android:onClick="recuperaContrasena"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:gravity="center|top"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/textoDocumento"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="Documento"
+                android:inputType="numberSigned"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/textoContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textoErrorLogin"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:gravity="center"
+                android:text="El usuario o contraseña es incorrecto"
+                android:textColor="#FF0000"
+                android:textSize="23sp"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/botonAceptar"
+                android:layout_width="163dp"
+                android:layout_height="76dp"
+                android:gravity="center"
+                android:onClick="aceptaIngreso"
+                android:text="Aceptar"
+                android:textSize="19dp"
+                app:backgroundTint="@color/white" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="177dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="recuperaContrasena"
+                android:text="Olvidé mi contraseña"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/textView16"
