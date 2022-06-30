@@ -28,6 +28,7 @@ import com.utn.palestrafitness.lib.Alumno;
 import com.utn.palestrafitness.R;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -154,9 +155,8 @@ public class PestañaBajaAlta extends Fragment {
                     AtomicReference<Boolean> encontreAlguno = new AtomicReference<>(Boolean.FALSE);
                     if (snapshot.exists()) {
                         HashMap encontrados = ((HashMap) snapshot.getValue());
-                        encontrados.forEach((documentoClave, esteAlumno) -> {
-                            System.out.println(documentoClave);
-
+                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            Alumno esteAlumno = postSnapshot.getValue(Alumno.class);
                             TableRow.LayoutParams param = new TableRow.LayoutParams(
                                     TableRow.LayoutParams.MATCH_PARENT,
                                     TableRow.LayoutParams.MATCH_PARENT,
@@ -190,16 +190,14 @@ public class PestañaBajaAlta extends Fragment {
                                 seleccionado = fila;
                             });
 
-                            HashMap alumno = (HashMap) esteAlumno;
-
                             //System.out.println(alumno);
                             //System.out.println(((String) alumno.get(apellido)));");
 
-                            if ((textoApellido.equals("") && textoNombre.equals(alumno.get("usuario"))) || (textoNombre.equals("") && alumno.get("apellido").equals(this.textoApellido)) || (textoNombre.equals(alumno.get("usuario")) && textoApellido.equals(alumno.get("apellido")))) {
-                                nombre.setText((String) alumno.get("usuario"));
-                                apellido.setText((String) alumno.get("apellido"));
-                                documento.setText((String) alumno.get("documento"));
-                                estado.setBackgroundColor((Boolean) (alumno.get("esAlumnoActivo")) ? Color.GREEN : Color.RED);
+                            if ((textoApellido.equals("") && textoNombre.equals(esteAlumno.getUsuario())) || (textoNombre.equals("") && esteAlumno.getApellido().equals(this.textoApellido)) || (textoNombre.equals(esteAlumno.getUsuario())) && textoApellido.equals(esteAlumno.getApellido())) {
+                                nombre.setText((String) esteAlumno.getUsuario());
+                                apellido.setText((String) esteAlumno.getApellido());
+                                documento.setText((String) esteAlumno.getDocumento());
+                                estado.setBackgroundColor((Boolean) (esteAlumno.getEsAlumnoActivo()) ? Color.GREEN : Color.RED);
 
                                 fila.addView(nombre);
                                 fila.addView(apellido);
@@ -209,7 +207,7 @@ public class PestañaBajaAlta extends Fragment {
                                 tablaEliminar.addView(fila);
                                 encontreAlguno.set(Boolean.TRUE);
                             }
-                        });
+                        }
                         if (!encontreAlguno.get()) {
                             textoBaja.setVisibility(View.VISIBLE);
                         }
